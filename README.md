@@ -19,24 +19,26 @@ DeepSeek Harness 插件。在原有界面中加入公历／农历双轨月历、
 
 ## 安装
 
-安装包位于 [`release/`](release/) 目录，文件名形如 `huaxia-calendar-dsh-0.1.0-m0.0.tgz`。
+从 [`release/`](release/) 目录下载安装包，保存到本机任意位置（文件名形如 `huaxia-calendar-dsh-0.1.0-m0.0.tgz`）。
 
 **在界面中安装（推荐）**
 
 1. 左侧栏点击 **插件**。
 2. 点击 **添加插件** 右侧的下拉箭头，选择 **安装第三方插件**。
-3. 在输入框中填入安装包的完整路径，点击 **安装**。例如：
+3. 在输入框中填入安装包的完整路径，点击 **安装**：
 
    ```
-   /Volumes/C/豆包学习/日历/huaxia-calendar-plugin/release/huaxia-calendar-dsh-0.1.0-m0.0.tgz
+   /Users/<用户名>/Downloads/huaxia-calendar-dsh-0.1.0-m0.0.tgz
    ```
+
+   需要填写的是**本机上这个文件的实际路径**，不是示例。获取方法：在 Finder 中选中该文件 → 按住 `Option` 键右键 →「拷贝“文件名”为路径名」，粘贴到输入框即可。
 
 4. 安装完成后点击 **立即启用**，然后重启 DeepSeek Harness。
 
 **在命令行中安装**
 
 ```sh
-dsh plugin --profile web add <安装包路径或压缩包 URL>
+dsh plugin --profile web add <安装包的绝对路径>
 ```
 
 **从源码构建**

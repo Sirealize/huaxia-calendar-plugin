@@ -1,0 +1,5 @@
+# Bundle 配置层：这一行把包的主入口作为「宿主半侧」挂进 profile（Cordis 插件）；
+# package.json 里的 `dsh.client` 声明则让 web app 把 ./client 当作浏览器半侧加载。
+- insert:
+    - id: huaxia-calendar-dsh
+      name: huaxia-calendar-dsh

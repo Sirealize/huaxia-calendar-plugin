@@ -1,0 +1,10 @@
+{
+  "name": "lunar-javascript",
+  "version": "1.7.8",
+  "description": "Vendored copy of lunar-javascript v1.7.8 (https://github.com/6tail/lunar-javascript). Do not edit lunar.js. Upgraded manually together with VENDOR.md.",
+  "main": "lunar.js",
+  "type": "commonjs",
+  "license": "MIT",
+  "author": "6tail <6tail@6tail.cn>",
+  "private": true
+}

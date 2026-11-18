@@ -1,0 +1,44 @@
+[
+  {
+    "id": "he-1001-001",
+    "solar": { "month": 10, "day": 1 },
+    "eventYear": 1949,
+    "yearLabel": "1949 年",
+    "title": "中华人民共和国成立",
+    "summary": "1949 年 10 月 1 日，开国大典在北京天安门广场举行，中华人民共和国中央人民政府宣告成立，随后举行阅兵与群众游行。10 月 1 日由此成为中华人民共和国国庆日。",
+    "category": "political",
+    "tags": ["开国大典", "国庆"],
+    "weight": 100,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-18"
+  },
+  {
+    "id": "he-0720-001",
+    "solar": { "month": 7, "day": 20 },
+    "eventYear": 1969,
+    "yearLabel": "1969 年",
+    "title": "阿波罗 11 号首次载人登月",
+    "summary": "1969 年 7 月 20 日，阿波罗 11 号登月舱降落月球静海，阿姆斯特朗成为首位踏上月面的人类。这是人类首次载人登月，标志着航天技术进入新阶段。",
+    "category": "science",
+    "tags": ["航天", "登月", "20 世纪"],
+    "weight": 95,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-18"
+  },
+  {
+    "id": "he-0808-001",
+    "solar": { "month": 8, "day": 8 },
+    "eventYear": 2008,
+    "yearLabel": "2008 年",
+    "title": "北京奥运会开幕",
+    "summary": "2008 年 8 月 8 日晚，第 29 届夏季奥林匹克运动会在北京国家体育场开幕，中国首次举办夏季奥运会。这场赛事成为一届规模空前的体育盛会，也让世界重新认识中国城市的面貌。",
+    "category": "sports",
+    "tags": ["奥运", "北京", "2008"],
+    "weight": 90,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-18"
+  }
+]

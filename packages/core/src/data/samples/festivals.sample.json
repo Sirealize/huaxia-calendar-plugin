@@ -1,0 +1,20 @@
+[
+  {
+    "id": "custom-mothers-day",
+    "name": "母亲节",
+    "rule": { "kind": "nth-weekday", "month": 5, "weekday": 0, "nth": 2 },
+    "category": "公历节日",
+    "description": "5 月第二个星期日（数据层可扩展示例，非核心算法内置）",
+    "source": "原创",
+    "license": "self-authored"
+  },
+  {
+    "id": "custom-dongzhi-south",
+    "name": "冬至（南方食俗）",
+    "rule": { "kind": "solar-term", "term": "冬至" },
+    "category": "节气民俗",
+    "description": "岭南等地冬至吃汤圆，示例自定义节日规则。",
+    "source": "原创",
+    "license": "self-authored"
+  }
+]

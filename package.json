@@ -1,0 +1,26 @@
+{
+  "name": "huaxia-calendar",
+  "version": "0.0.1-alpha.0",
+  "private": true,
+  "description": "华夏文明日历 —— 装在 AI 编码工具里的公历+农历+节气+历史叙事日历插件",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "npm run test --workspaces --if-present",
+    "test:core": "npm test --workspace=@shishu/core",
+    "test:content": "npm test --workspace=@shishu/content-l1",
+    "test:ui": "npm test --workspace=@shishu/ui-react",
+    "build": "npm run build --workspace=huaxia-calendar-dsh",
+    "verify": "npm run verify --workspace=huaxia-calendar-dsh",
+    "typecheck": "npm run typecheck --workspace=huaxia-calendar-dsh",
+    "package": "node scripts/package.mjs",
+    "install:dsh": "node scripts/install.mjs",
+    "test:spike": "node spikes/dsh-hello/verify.mjs"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "license": "UNLICENSED"
+}

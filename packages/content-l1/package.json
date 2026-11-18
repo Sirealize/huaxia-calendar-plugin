@@ -1,0 +1,23 @@
+{
+  "name": "@shishu/content-l1",
+  "version": "0.1.0-m0.0",
+  "private": true,
+  "description": "L1 内容包：30 天文明史叙事样板。全部原创 / 公有领域，不随包分发任何 CC BY-SA 内容。",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "build:manifest": "node scripts/build-manifest.mjs",
+    "test": "node --test",
+    "validate": "node --test"
+  },
+  "dependencies": {
+    "@shishu/core": "0.1.0-spike.0"
+  }
+}

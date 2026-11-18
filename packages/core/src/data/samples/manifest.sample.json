@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0.0",
+  "packId": "l1-sample",
+  "packVersion": "0.1.0",
+  "title": "L1 内容包示例（非完整包）",
+  "generatedAt": "2026-11-18T00:00:00+08:00",
+  "license": "self-authored",
+  "counts": {
+    "historicalEvents": 3,
+    "hexagrams": 1,
+    "festivals": 2
+  },
+  "coverage": {
+    "years": [1900, 2100],
+    "dayOfYearCoverage": "partial"
+  },
+  "files": [
+    { "path": "historical-events.json", "bytes": 0, "sha256": "示例，实际打包时由构建脚本填写", "recordCount": 3 },
+    { "path": "hexagrams.json", "bytes": 0, "sha256": "示例，实际打包时由构建脚本填写", "recordCount": 1 },
+    { "path": "festivals.json", "bytes": 0, "sha256": "示例，实际打包时由构建脚本填写", "recordCount": 2 }
+  ],
+  "attribution": "本样本仅用于 schema 演示，全部示例文本为原创整理（self-authored）；《周易》经文为公有领域。不包含任何 CC BY-SA 内容，不得转写维基百科或百度百科正文。"
+}

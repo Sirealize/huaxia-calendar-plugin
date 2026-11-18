@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.16.0'
+          cache: npm
+
+      - name: 安装依赖
+        run: npm install --no-audit --no-fund
+
+      # 核心算法层：农历/节气/干支正确性（44+ 断言，含 10 年模糊测试）
+      - name: 核心算法测试
+        run: npm run test:core
+
+      # 内容包：schema 校验 + 许可证白名单（防止 CC BY-SA 混入）
+      - name: 内容包校验
+        run: npm run test:content
+
+      # UI 纯逻辑：月网格 / 农历格式化 / 节气映射
+      - name: UI 逻辑测试
+        run: npm run test:ui
+
+      # 宿主契约：bundle 格式、slot 注册、对 0.2.2-rc.1 类型做类型检查
+      # 这是防「DSH 版本漂移」的最后一道闸（见 docs/phase0/宿主可行性.md 第七节）
+      - name: 构建插件 bundle
+        run: npm run build
+
+      - name: 校验 bundle 接缝与席位注册
+        run: npm run verify
+
+      - name: 宿主类型检查（pin dsh 0.2.2-rc.1）
+        run: npm run typecheck
+
+      # 端到端：打包成 tarball（确保分发包可产物化）
+      - name: 打包 tarball
+        run: npm run package
+
+      - name: 上传分发产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: huaxia-calendar-dsh-tarball
+          path: dist/*.tgz
+          if-no-files-found: error

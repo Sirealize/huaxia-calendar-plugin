@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0.0",
+  "packId": "shishu-l1-30d",
+  "packVersion": "0.1.0-m0.0",
+  "title": "华夏文明日历 · 30 天文明史样板",
+  "generatedAt": "2026-11-18T00:00:00.000Z",
+  "license": "self-authored",
+  "counts": {
+    "historicalEvents": 30,
+    "hexagrams": 0,
+    "festivals": 0
+  },
+  "coverage": {
+    "years": [
+      1900,
+      2100
+    ],
+    "dayOfYearCoverage": "partial"
+  },
+  "files": [
+    {
+      "path": "data/historical-events.json",
+      "bytes": 19826,
+      "sha256": "49dd38475cc0edc453205db6aac4abdd41f79735d77ffb965e43a8714db2ccaf",
+      "recordCount": 30
+    }
+  ],
+  "attribution": "本内容包全部条目为原创整理（self-authored），叙述文字为原创；所述年份均为公开可核实的史实，不随包分发任何第三方百科正文。"
+}

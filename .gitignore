@@ -1,0 +1,28 @@
+# 依赖
+node_modules/
+.pnpm-store/
+
+# 构建产物：只忽略真正包的产物目录
+# 注意：spikes/dsh-hello/lib/ 是 Phase 0 的证据文件（bundle 格式样本），必须入库，所以不写全局 lib/
+dist/
+packages/*/lib/
+packages/*/dist/
+*.tsbuildinfo
+
+# 打包产物
+*.tgz
+*.vsix
+
+# 临时/缓存
+.npm-cache/
+.cache/
+*.log
+.DS_Store
+
+# 本地环境
+.env
+.env.local
+
+# 编辑器
+.vscode/
+.idea/

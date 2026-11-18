@@ -8,13 +8,14 @@
  *   - tarball 渠道零构建、零网络，是内网/离线场景唯一干净路径（规划 F06 运行时离线）。
  */
 import { spawnSync } from 'node:child_process'
-import { existsSync, mkdirSync, readdirSync, rmSync } from 'node:fs'
+import { copyFileSync, existsSync, mkdirSync, readdirSync, rmSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const PKG_DIR = join(ROOT, 'packages/host-dsh')
 const DIST_DIR = join(ROOT, 'dist')
+const RELEASE_DIR = join(ROOT, 'release')
 
 function run(cmd, args, cwd) {
   process.stdout.write(`\n$ ${cmd} ${args.join(' ')}  (cwd: ${cwd})\n`)
@@ -44,10 +45,20 @@ for (const file of readdirSync(DIST_DIR)) {
 run('npm', ['pack', '--pack-destination', DIST_DIR], PKG_DIR)
 
 const tarball = readdirSync(DIST_DIR).find((file) => file.endsWith('.tgz'))
+
+// 4) 同步一份到 release/：这是给使用者直接在 GUI「添加插件」里粘贴路径用的安装包
+mkdirSync(RELEASE_DIR, { recursive: true })
+for (const file of readdirSync(RELEASE_DIR)) {
+  if (file.endsWith('.tgz')) rmSync(join(RELEASE_DIR, file))
+}
+const releasePath = join(RELEASE_DIR, tarball)
+copyFileSync(join(DIST_DIR, tarball), releasePath)
+
 process.stdout.write(
-  `\n✔ 打包完成：dist/${tarball}\n` +
-    `\n下一步（把插件装进 DSH profile）：\n` +
-    `  node scripts/install.mjs --profile web\n` +
-    `  # 或手动：dsh plugin --profile web add ${join('dist', tarball)}\n` +
-    `\n装完需要重启 GUI 或刷新页面才能看到「华夏日历」入口。\n`,
+  `\n✔ 打包完成：release/${tarball}\n` +
+    `\n在 DeepSeek Harness 里安装（不用命令行）：\n` +
+    `  1) 左侧栏「插件」→「添加插件」右边小箭头 →「安装第三方插件」\n` +
+    `  2) 粘贴这个完整路径：\n     ${releasePath}\n` +
+    `  3) 点「安装」→「立即启用」→ 重启一次 GUI\n` +
+    `\n命令行方式（脚本化/批量部署）：node scripts/install.mjs --profile web\n`,
 )

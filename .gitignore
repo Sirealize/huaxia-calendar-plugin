@@ -9,9 +9,10 @@ packages/*/lib/
 packages/*/dist/
 *.tsbuildinfo
 
-# 打包产物
+# 打包产物（dist/ 是临时构建输出；release/ 是要入库分发的安装包，见下行例外）
 *.tgz
 *.vsix
+!release/*.tgz
 
 # 临时/缓存
 .npm-cache/

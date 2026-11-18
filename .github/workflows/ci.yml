@@ -32,7 +32,7 @@ jobs:
         run: npm run test:ui
 
       # 宿主契约：bundle 格式、slot 注册、对 0.2.2-rc.1 类型做类型检查
-      # 这是防「DSH 版本漂移」的最后一道闸（见 docs/phase0/宿主可行性.md 第七节）
+      # 这是防「DSH 版本漂移」的最后一道闸（见 docs/evaluation/宿主可行性.md 第七节）
       - name: 构建插件 bundle
         run: npm run build
 

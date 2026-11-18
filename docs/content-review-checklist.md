@@ -1,7 +1,7 @@
 # 内容发布审核清单
 
 > 适用对象：`packages/content-l1/**` 的「每日文明史叙事」条目，以及未来任何随包分发或在线推送的文本内容（卦象解读、节令文案、专题扩展包）。
-> 权威依据：`docs/phase0/内容层可行性.md`（第三节筛选标准、第四节合规边界）与 `packages/core/src/data/schemas.ts`（许可证铁律）。
+> 权威依据：`docs/evaluation/内容层可行性.md`（第三节筛选标准、第四节合规边界）与 `packages/core/src/data/schemas.ts`（许可证铁律）。
 > 原则：**准确性优先于丰富度；不确定宁可不写。年份写错是产品事故。**
 
 ---

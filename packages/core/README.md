@@ -8,7 +8,7 @@
 - **双端可用**：源码无 Node 专有 API；浏览器/宿主侧用 esbuild/vite 打包 TS 即可。
 
 > 状态：Spike 原型，尚未发布 npm。版本号 `0.1.0-spike.0`，API 可能微调。
-> 可行性结论、选型对比、实测数据见 [docs/phase0/核心算法可行性.md](../../docs/phase0/核心算法可行性.md)。
+> 可行性结论、选型对比、实测数据见 [docs/evaluation/核心算法可行性.md](../../docs/evaluation/核心算法可行性.md)。
 
 ## 快速开始
 

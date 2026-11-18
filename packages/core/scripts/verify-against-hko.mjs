@@ -14,7 +14,7 @@
  * 注意：HKO 对无 User-Agent 的批量请求会拒绝，脚本已带 UA 并做串行限速。
  *
  * 结论口径：HKO 历表是权威数据，若与库不一致会逐条列出，需人工判断
- * （历史历书在午夜新月边界存在不同数据源分歧，见 docs/phase0/核心算法可行性.md）。
+ * （历史历书在午夜新月边界存在不同数据源分歧，见 docs/evaluation/核心算法可行性.md）。
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';

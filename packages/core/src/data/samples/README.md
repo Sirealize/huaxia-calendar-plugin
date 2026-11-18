@@ -6,7 +6,7 @@
 
 - **样本不得包含任何 CC BY-SA 内容**，也不得转写维基百科、百度百科或其它百科站的正文。
   原因：CC BY-SA 的「相同方式共享」义务会随 `@shishu/core` 的 `src/` 一起分发，传染整个包；
-  百科正文还与「原创策展」的内容口径不符。完整裁定见 `docs/phase0/内容层可行性.md`。
+  百科正文还与「原创策展」的内容口径不符。完整裁定见 `docs/evaluation/内容层可行性.md`。
 - 样本条目只允许 `license: "self-authored"`（原创示例文本）或 `public-domain`（如《周易》经文等已过版权保护期的原文）。
 - 需要 CC 许可的**测试夹具**请直接在测试代码里内联构造（例如 `data-schema.test.ts` 中校验「CC 条目缺署名只报 warning」的用例），**不要**写进本目录的 JSON，避免被误当作可分发内容。
 - 新增样本前先过 `docs/content-review-checklist.md`。

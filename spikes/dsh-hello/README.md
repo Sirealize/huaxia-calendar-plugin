@@ -1,7 +1,7 @@
 # spikes/dsh-hello — Phase 0 最小可验证插件
 
 这个目录不是产品代码，是**可执行的证据**：用来证明「华夏文明日历」作为 DeepSeek Harness（DSH）第三方客户端插件，在 `dsh 0.2.2-rc.1` 上确实能注册进 slot 并被宿主加载。
-配套结论与证据见 [`docs/phase0/宿主可行性.md`](../../docs/phase0/宿主可行性.md)。
+配套结论与证据见 [`docs/evaluation/宿主可行性.md`](../../docs/evaluation/宿主可行性.md)。
 
 ## 它做了什么
 

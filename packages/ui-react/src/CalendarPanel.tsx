@@ -7,11 +7,24 @@
  * 0.2.0：配色全部改为宿主 DSH 主题 token（见 `./theme.ts`），不再自带任何品牌色，
  * light / dark 模式下自动跟随宿主。
  *
+ * 0.3.0：「今日一屏」的历史叙事从单条改成**轮播**——当天多条（中华文明优先、
+ * 兼及世界），`‹ ›` / 计数 / 圆点可切换，8 秒自动播放（悬停或键盘聚焦暂停），
+ * 容器可聚焦并支持 `←` / `→`，条数 0 / 1 / N 都有正确降级。
+ *
+ * 卡片按 `dateKind` 明确标注日期口径：`exact` =「历史上的今天」（确实发生在当天），
+ * `period` =「华夏文明坐标 · origin · yearLabel」（只按年份/朝代入档，**不是**当天发生）。
+ * 缺省字段按 `period` 降级，绝不把文明坐标谎称成今天。区块标题也据此变成
+ * 「今日 · 古今中外」/「华夏文明坐标 · 古今中外」，不再笼统叫「历史叙事」。
+ *
  * 数据全部来自 `@shishu/core`（农历/节气/干支/节日本地实算）与
- * `@shishu/content-l1`（每天一条历史叙事）。
+ * `@shishu/content-l1`（每天多条历史叙事，按天轮播）。
  */
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import type { ReactElement } from 'react'
+import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react'
+import type {
+  FocusEvent as ReactFocusEvent,
+  KeyboardEvent as ReactKeyboardEvent,
+  ReactElement,
+} from 'react'
 import { packManifest } from '@shishu/content-l1'
 import {
   buildDayBrief,
@@ -25,14 +38,27 @@ import {
   type CalendarDay,
 } from './pure/calendar.ts'
 import {
+  CAROUSEL_INTERVAL_MS,
+  carouselCountText,
+  carouselReducer,
+  initialCarouselState,
+  wrapCarouselIndex,
+} from './pure/carousel.ts'
+import {
   WEEKDAY_SHORT,
+  carouselSectionTitle,
+  eventDateKind,
   formatCellCaption,
   formatEventAttribution,
+  formatEventCategory,
+  formatEventDateKindDetail,
   formatEventHeadline,
+  formatEventOrigin,
   formatFestivalLabel,
   formatGanZhiLine,
   formatSolarDate,
   formatSolarTermLine,
+  eventRegion,
 } from './pure/format.ts'
 import { RADIUS, TOKENS, fontSize, type CalendarStyle } from './theme.ts'
 
@@ -309,6 +335,170 @@ const eventAttributionStyle: CalendarStyle = {
   fontFamily: TOKENS.fontText,
 }
 
+// ── 历史叙事轮播（0.3.0） ───────────────────────────────────────────────────
+
+/** 标题行：区块标题 + 暂停提示 / 计数。 */
+const carouselHeadStyle: CalendarStyle = {
+  display: 'flex',
+  alignItems: 'baseline',
+  justifyContent: 'space-between',
+  gap: 8,
+  marginBottom: 7,
+}
+
+/** 标签行：origin（中华 / 世界）+ category。 */
+const carouselChipRowStyle: CalendarStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  flexWrap: 'wrap',
+  gap: 5,
+  marginBottom: 6,
+}
+
+const carouselChipBase: CalendarStyle = {
+  display: 'inline-block',
+  padding: '1px 7px',
+  borderRadius: 999,
+  fontSize: fontSize(-3.5),
+  lineHeight: 1.6,
+  letterSpacing: 0.3,
+  whiteSpace: 'nowrap',
+}
+
+/**
+ * 文明归属标签：中华用实线 + 品牌色描边，世界用虚线 + 弱化文字色。
+ * 只用宿主 token，深浅色自动跟随。
+ */
+function eventOriginChipStyle(region: 'china' | 'world'): CalendarStyle {
+  if (region === 'world') {
+    return {
+      ...carouselChipBase,
+      border: `1px dashed ${TOKENS.borderL2}`,
+      background: 'transparent',
+      color: TOKENS.labelTertiary,
+    }
+  }
+  return {
+    ...carouselChipBase,
+    border: `1px solid ${TOKENS.borderL2}`,
+    background: TOKENS.bgLayer3,
+    color: TOKENS.brandPrimary,
+    fontWeight: 500,
+  }
+}
+
+const carouselCategoryChipStyle: CalendarStyle = {
+  ...carouselChipBase,
+  border: `1px solid ${TOKENS.borderL1}`,
+  background: TOKENS.bgLayer1,
+  color: TOKENS.labelTertiary,
+}
+
+/**
+ * 日期口径标签（不能再含糊）：
+ * - `exact`（确实发生在今天）：品牌色淡底 + 品牌色描边与文字；
+ * - `period`（只以年份/朝代入档，不是当天发生）：透明底 + 边框色描边 + 弱化文字。
+ *
+ * 只用宿主 token（淡底用 `color-mix` 从 `--dsw-alias-brand-primary` 派生，不引入自有色值）。
+ */
+function eventKindChipStyle(kind: 'exact' | 'period'): CalendarStyle {
+  if (kind === 'exact') {
+    return {
+      ...carouselChipBase,
+      border: `1px solid ${TOKENS.brandPrimary}`,
+      background: `color-mix(in srgb, ${TOKENS.brandPrimary} 14%, transparent)`,
+      color: TOKENS.brandPrimary,
+      fontWeight: 600,
+    }
+  }
+  return {
+    ...carouselChipBase,
+    border: `1px solid ${TOKENS.borderL2}`,
+    background: 'transparent',
+    color: TOKENS.labelTertiary,
+  }
+}
+
+/** 可聚焦的轮播舞台：键盘操作时给出宿主 token 的 focus 框。 */
+function carouselStageStyle(focusVisible: boolean): CalendarStyle {
+  return {
+    borderRadius: RADIUS.xs,
+    outline: focusVisible ? `2px solid ${TOKENS.brandPrimary}` : 'none',
+    outlineOffset: 2,
+  }
+}
+
+const carouselControlsStyle: CalendarStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: 8,
+  marginTop: 10,
+  paddingTop: 8,
+  borderTop: `1px dashed ${TOKENS.borderL1}`,
+}
+
+const carouselArrowStyle: CalendarStyle = {
+  appearance: 'none',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flex: '0 0 auto',
+  width: 22,
+  height: 22,
+  padding: 0,
+  border: `1px solid ${TOKENS.borderL2}`,
+  borderRadius: RADIUS.xs,
+  background: TOKENS.bgLayer1,
+  color: TOKENS.labelSecondary,
+  fontFamily: TOKENS.fontText,
+  fontSize: fontSize(0),
+  lineHeight: 1,
+  cursor: 'pointer',
+}
+
+const carouselCountStyle: CalendarStyle = {
+  flex: '0 0 auto',
+  minWidth: 34,
+  textAlign: 'center',
+  fontSize: fontSize(-3.5),
+  letterSpacing: 0.4,
+  color: TOKENS.labelTertiary,
+  fontFamily: TOKENS.fontText,
+  fontVariantNumeric: 'tabular-nums',
+}
+
+const carouselDotsStyle: CalendarStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  gap: 6,
+  flex: '1 1 auto',
+  paddingLeft: 4,
+}
+
+/** 圆点：当前条用品牌色实心 + 描边，其余为边框色空心。 */
+function carouselDotStyle(active: boolean): CalendarStyle {
+  return {
+    appearance: 'none',
+    width: active ? 8 : 6,
+    height: active ? 8 : 6,
+    padding: 0,
+    borderRadius: '50%',
+    border: active ? `1px solid ${TOKENS.brandPrimary}` : `1px solid ${TOKENS.borderL3}`,
+    background: active ? TOKENS.brandPrimary : 'transparent',
+    cursor: 'pointer',
+    transition: 'width 120ms ease, height 120ms ease, background 120ms ease',
+  }
+}
+
+const carouselHintStyle: CalendarStyle = {
+  marginTop: 8,
+  fontSize: fontSize(-4),
+  letterSpacing: 0.3,
+  color: TOKENS.labelCaption,
+  fontFamily: TOKENS.fontText,
+}
+
 const eventEmptyStyle: CalendarStyle = {
   fontSize: fontSize(-1.5),
   lineHeight: 1.8,
@@ -468,6 +658,101 @@ export function CalendarPanel(): ReactElement {
   const header = useMemo(() => buildMonthHeader(view.year, view.month), [view])
   const grid = useMemo(() => buildMonthGrid(view.year, view.month, { today }), [view, today])
   const brief = useMemo(() => buildDayBrief(selected), [selected])
+
+  // ── 历史叙事轮播（0.3.0） ──────────────────────────────────────────────────
+  const selectedKey = toDateKey(selected)
+  const carouselEvents = brief.events
+  const carouselTotal = carouselEvents.length
+  const [carousel, dispatchCarousel] = useReducer(carouselReducer, selectedKey, initialCarouselState)
+  const [carouselFocused, setCarouselFocused] = useState(false)
+
+  // 切换选中日期 → 回到第 1 条并重置计时。渲染期直接校正（React 官方
+  // "adjust state during render" 模式）：不等副作用，避免先闪一条旧日期的条目。
+  if (carousel.dateKey !== selectedKey) {
+    dispatchCarousel({ type: 'select-date', dateKey: selectedKey })
+  }
+
+  const carouselIndex = wrapCarouselIndex(carousel.index, carouselTotal)
+  const carouselEvent = carouselEvents[carouselIndex]
+  const carouselKind = carouselEvent === undefined ? undefined : eventDateKind(carouselEvent)
+  const carouselCount = carouselCountText(carouselIndex, carouselTotal)
+
+  // 自动轮播：8 秒一条。悬停 / 键盘聚焦暂停时不开定时器；手动切换、换日期、
+  // 暂停后恢复都会让 timerKey 自增，从而重置计时；卸载时清理。
+  useEffect(() => {
+    if (carousel.paused || carouselTotal <= 1) return undefined
+    const timer = setTimeout(() => {
+      dispatchCarousel({ type: 'auto', total: carouselTotal })
+    }, CAROUSEL_INTERVAL_MS)
+    return () => clearTimeout(timer)
+  }, [carousel.paused, carousel.timerKey, carouselTotal])
+
+  const stepCarousel = useCallback(
+    (delta: number) => {
+      dispatchCarousel({ type: delta > 0 ? 'next' : 'prev', total: carouselTotal })
+    },
+    [carouselTotal],
+  )
+
+  const jumpCarousel = useCallback(
+    (index: number) => {
+      dispatchCarousel({ type: 'jump', index, total: carouselTotal })
+    },
+    [carouselTotal],
+  )
+
+  const pauseCarousel = useCallback(() => dispatchCarousel({ type: 'pause' }), [])
+  const resumeCarousel = useCallback(() => dispatchCarousel({ type: 'resume' }), [])
+
+  // 悬停与键盘聚焦是两个独立来源：任一存在就暂停，两个都离开才恢复。
+  // 用 ref 记录（不触发额外渲染），统一收口到 syncCarouselPause。
+  const carouselHoveredRef = useRef(false)
+  const carouselFocusedRef = useRef(false)
+  const syncCarouselPause = useCallback(() => {
+    if (carouselHoveredRef.current || carouselFocusedRef.current) pauseCarousel()
+    else resumeCarousel()
+  }, [pauseCarousel, resumeCarousel])
+
+  const handleCarouselMouseEnter = useCallback(() => {
+    carouselHoveredRef.current = true
+    syncCarouselPause()
+  }, [syncCarouselPause])
+
+  const handleCarouselMouseLeave = useCallback(() => {
+    carouselHoveredRef.current = false
+    syncCarouselPause()
+  }, [syncCarouselPause])
+
+  const handleCarouselFocus = useCallback(() => {
+    carouselFocusedRef.current = true
+    setCarouselFocused(true)
+    syncCarouselPause()
+  }, [syncCarouselPause])
+
+  const handleCarouselBlur = useCallback(
+    (event: ReactFocusEvent<HTMLDivElement>) => {
+      const next = event.relatedTarget as Node | null
+      // 焦点还在轮播内部（例如从容器移到「下一条」按钮）时不算离开。
+      if (next !== null && event.currentTarget.contains(next)) return
+      carouselFocusedRef.current = false
+      setCarouselFocused(false)
+      syncCarouselPause()
+    },
+    [syncCarouselPause],
+  )
+
+  const handleCarouselKeyDown = useCallback(
+    (event: ReactKeyboardEvent<HTMLDivElement>) => {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault()
+        stepCarousel(-1)
+      } else if (event.key === 'ArrowRight') {
+        event.preventDefault()
+        stepCarousel(1)
+      }
+    },
+    [stepCarousel],
+  )
 
   const goToday = useCallback(() => {
     const now = todayDate()
@@ -655,13 +940,112 @@ export function CalendarPanel(): ReactElement {
               </div>
             ) : null}
 
-            <div style={eventBlockStyle}>
-              <div style={eventLabelStyle}>历史叙事 · 历史上的今天</div>
-              {brief.event !== undefined ? (
+            <div
+              style={eventBlockStyle}
+              data-huaxia-carousel=""
+              data-huaxia-carousel-total={carouselTotal}
+              onMouseEnter={handleCarouselMouseEnter}
+              onMouseLeave={handleCarouselMouseLeave}
+            >
+              <div style={carouselHeadStyle}>
+                <span style={{ ...eventLabelStyle, marginBottom: 0 }}>
+                  {carouselSectionTitle(carouselEvents)}
+                </span>
+                {carouselTotal > 1 ? (
+                  <span
+                    data-huaxia-carousel-count=""
+                    aria-label={`第 ${carouselIndex + 1} 条，共 ${carouselTotal} 条历史叙事`}
+                    style={carouselCountStyle}
+                  >
+                    {carouselCount}
+                  </span>
+                ) : null}
+              </div>
+              {carouselEvent !== undefined ? (
                 <>
-                  <div style={eventHeadlineStyle}>{formatEventHeadline(brief.event)}</div>
-                  <p style={eventSummaryStyle}>{brief.event.summary}</p>
-                  <div style={eventAttributionStyle}>{formatEventAttribution(brief.event)}</div>
+                  <div
+                    data-huaxia-carousel-stage=""
+                    role="group"
+                    aria-roledescription="轮播"
+                    aria-label={`历史叙事轮播：第 ${carouselIndex + 1} 条，共 ${carouselTotal} 条`}
+                    tabIndex={0}
+                    onFocus={handleCarouselFocus}
+                    onBlur={handleCarouselBlur}
+                    onKeyDown={handleCarouselKeyDown}
+                    style={carouselStageStyle(carouselFocused)}
+                  >
+                    <div style={carouselChipRowStyle}>
+                      <span
+                        data-huaxia-carousel-kind={carouselKind}
+                        style={eventKindChipStyle(carouselKind === 'exact' ? 'exact' : 'period')}
+                      >
+                        {formatEventDateKindDetail(carouselEvent)}
+                      </span>
+                      <span
+                        data-huaxia-carousel-region={eventRegion(carouselEvent)}
+                        style={eventOriginChipStyle(eventRegion(carouselEvent))}
+                      >
+                        {formatEventOrigin(carouselEvent)}
+                      </span>
+                      <span
+                        data-huaxia-carousel-category={carouselEvent.category}
+                        style={carouselCategoryChipStyle}
+                      >
+                        {formatEventCategory(carouselEvent.category)}
+                      </span>
+                    </div>
+                    <div style={eventHeadlineStyle}>{formatEventHeadline(carouselEvent)}</div>
+                    <p style={eventSummaryStyle}>{carouselEvent.summary}</p>
+                    <div style={eventAttributionStyle}>{formatEventAttribution(carouselEvent)}</div>
+                  </div>
+                  {carouselTotal > 1 ? (
+                    <div style={carouselControlsStyle} data-huaxia-carousel-controls="">
+                      <button
+                        type="button"
+                        data-huaxia-carousel-prev=""
+                        aria-label="上一条历史叙事"
+                        title="上一条历史叙事"
+                        onClick={() => stepCarousel(-1)}
+                        style={carouselArrowStyle}
+                      >
+                        ‹
+                      </button>
+                      <span data-huaxia-carousel-counter="" style={carouselCountStyle}>
+                        {carouselCount}
+                      </span>
+                      <button
+                        type="button"
+                        data-huaxia-carousel-next=""
+                        aria-label="下一条历史叙事"
+                        title="下一条历史叙事"
+                        onClick={() => stepCarousel(1)}
+                        style={carouselArrowStyle}
+                      >
+                        ›
+                      </button>
+                      <span style={carouselDotsStyle} role="group" aria-label="轮播条目圆点">
+                        {carouselEvents.map((event, index) => (
+                          <button
+                            key={event.id}
+                            type="button"
+                            data-huaxia-carousel-dot=""
+                            aria-label={`第 ${index + 1} 条历史叙事：${event.title}`}
+                            aria-current={index === carouselIndex ? 'true' : undefined}
+                            title={`第 ${index + 1} 条：${event.title}`}
+                            onClick={() => jumpCarousel(index)}
+                            style={carouselDotStyle(index === carouselIndex)}
+                          />
+                        ))}
+                      </span>
+                    </div>
+                  ) : null}
+                  {carouselTotal > 1 ? (
+                    <div style={carouselHintStyle}>
+                      {carousel.paused
+                        ? '自动轮播已暂停 · 移开鼠标或移走焦点后继续'
+                        : '每 8 秒自动切换 · 悬停暂停 · ←/→ 切换'}
+                    </div>
+                  ) : null}
                 </>
               ) : (
                 <div style={eventEmptyStyle}>

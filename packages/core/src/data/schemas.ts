@@ -41,6 +41,26 @@ export type HistoricalEventCategory =
   | 'sports'
   | 'other';
 
+/** 历史事件的文明归属。 */
+export type HistoricalEventRegion =
+  /** 中华文明（含港澳台及海外华人相关事件）。展示时优先。 */
+  | 'china'
+  /** 其他文明与地区。 */
+  | 'world';
+
+/** 历史事件的日期口径。 */
+export type HistoricalEventDateKind =
+  /**
+   * 确切的「历史上的今天」：事件确实发生在该公历月日，可核实。
+   * 仅近现代事件通常能满足（古代纪日为干支/农历，无法逐年换算到公历月日）。
+   */
+  | 'exact'
+  /**
+   * 文明坐标：只以「年份 + 朝代」入档，`solar` 月日仅作轮播归档位，
+   * **不代表事件发生在那一天**。UI 必须标注为「文明坐标」而非「今天」。
+   */
+  | 'period';
+
 /** 一条「历史上的今天」事件（L1 内容包核心数据）。 */
 export interface HistoricalEvent {
   /** 稳定 id，建议 `he-<MMDD>-<序号>`，如 `he-0217-001`。 */
@@ -56,6 +76,18 @@ export interface HistoricalEvent {
   /** 摘要（建议 60-140 字）。 */
   summary: string;
   category: HistoricalEventCategory;
+  /**
+   * 文明归属。内容定位为「以中华文明为主、兼及世界」，同一天轮播时
+   * `china` 条目排在 `world` 之前。**推荐填写**，缺省按 `china` 处理。
+   */
+  region?: HistoricalEventRegion;
+  /** 地域/朝代标签，如「中国·北宋」「欧洲·意大利」。**推荐填写**。 */
+  origin?: string;
+  /**
+   * 日期口径。`exact` = 确实发生在该公历月日；`period` = 仅以年份/朝代入档的文明坐标。
+   * **推荐填写**，缺省按 `period` 处理（宁可标注为文明坐标，也不谎称「今天」）。
+   */
+  dateKind?: HistoricalEventDateKind;
   /** 检索/展示标签，2-5 个。 */
   tags?: string[];
   /** 同一天多条事件时的排序权重，0-100，越大越靠前。 */

@@ -208,11 +208,25 @@ test('store：从 localStorage 恢复上次的收起与位置（刷新后保持�
 // ── 选中日期信息（点某天后卡片底部那一行） ─────────────────────────────────
 
 test('选中日信息：普通日给农历 + 干支 + 历史叙事标题', () => {
-  // 2026-11-18：无节气无节日，内容包里有一条历史叙事
-  const line = formatMiniDayLine(buildDayBrief({ year: 2026, month: 11, day: 18 }))
-  assert.equal(line, '十月初十 · 丙申日 · 北美铁路启用标准时间')
+  // 2026-11-18：无节气无节日（内容包每天条数可变，不断言具体篇目）
+  const brief = buildDayBrief({ year: 2026, month: 11, day: 18 })
+  const line = formatMiniDayLine(brief)
+  assert.ok(line.startsWith('十月初十 · 丙申日 · '), `实际：${line}`)
   assert.ok(line.includes('十月初十'), '必须能看懂农历')
   assert.ok(line.includes('丙申日'), '必须有干支日')
+  if (brief.events.length > 0) {
+    // 多条时默认展示第一条，且当天第一条的历史叙事标题必须出现
+    // （dateKind 缺省按 period 处理，行尾可能带「文明坐标」标记）
+    assert.ok(line.includes(brief.events[0].title), `第一条标题缺失：${line}`)
+    // 计数切换后展示下一条（条数 ≥2 时）
+    if (brief.events.length > 1) {
+      const nextLine = formatMiniDayLine(brief, { eventIndex: 1 })
+      assert.ok(nextLine.includes(brief.events[1].title), `第二条标题缺失：${nextLine}`)
+    }
+  } else {
+    // 0 条时退化为下一个节气倒计时，仍然不是空行
+    assert.ok(line.split(' · ').length >= 3)
+  }
 })
 
 test('选中日信息：节气日以节气优先（今天写「今日交节」，非今天写「当日交节」）', () => {

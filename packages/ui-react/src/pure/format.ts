@@ -7,6 +7,9 @@ import type {
   FestivalInfo,
   GanZhiInfo,
   HistoricalEvent,
+  HistoricalEventCategory,
+  HistoricalEventDateKind,
+  HistoricalEventRegion,
   LicenseId,
   LunarDateInfo,
 } from '@shishu/core'
@@ -108,24 +111,35 @@ export function formatPill(brief: DayBrief): PillText {
  *
  * @param brief - 该日的一屏数据。
  * @param options.isToday - 是否为今天；`false` 时节气文案写「当日交节」而非「今日交节」。
+ * @param options.eventIndex - 当天多条历史叙事时展示第几条（0 起，越界回绕）；默认第一条。
  * @returns 形如 `十月初十 · 丙申日 · 北美铁路启用标准时间` 的单行文案。
  */
-export function formatMiniDayLine(brief: DayBrief, options: { isToday?: boolean } = {}): string {
+export function formatMiniDayLine(
+  brief: DayBrief,
+  options: { isToday?: boolean; eventIndex?: number } = {},
+): string {
   const isToday = options.isToday ?? true
   const head = `${lunarMonthLabel(brief.lunar)}${brief.lunar.lunarDayName}`
   const ganZhi = `${brief.ganZhi.day}日`
+  const index = options.eventIndex ?? 0
+  const event = brief.events?.[index] ?? brief.event
 
   let tail: string
+  let tailIsEvent = false
   if (brief.solarTerm !== undefined) {
     tail = `${isToday ? '今日' : '当日'}交节 · ${brief.solarTerm.name}`
   } else if (brief.festivals.length > 0) {
     tail = brief.festivals.map(formatFestivalLabel).join('、')
-  } else if (brief.event !== undefined) {
-    tail = brief.event.title
+  } else if (event !== undefined) {
+    tail = event.title
+    tailIsEvent = true
   } else {
     tail = formatSolarTermLine(brief, { isToday })
   }
-  return `${head} · ${ganZhi} · ${tail}`
+  // 日期口径标记：`period` 条目只是「文明坐标」，不是当天发生，行尾明确标出来。
+  const kindMark =
+    tailIsEvent && event !== undefined && eventDateKind(event) === 'period' ? ' · 文明坐标' : ''
+  return `${head} · ${ganZhi} · ${tail}${kindMark}`
 }
 
 /** 节日小标签文案（名称 + 法定节假日角标）。 */
@@ -147,6 +161,100 @@ const LICENSE_LABELS: Readonly<Record<LicenseId, string>> = Object.freeze({
 /** 许可证 → 中文展示标签。 */
 export function licenseLabel(license: LicenseId): string {
   return LICENSE_LABELS[license] ?? LICENSE_LABELS.unknown
+}
+
+/** 历史叙事的文明归属中文标签（0.3.0 轮播里用来区分「中华 / 世界」）。 */
+export const EVENT_REGION_LABELS: Readonly<Record<HistoricalEventRegion, string>> = Object.freeze({
+  china: '中华',
+  world: '世界',
+})
+
+/**
+ * 条目的文明归属：缺省按中华处理（与 `@shishu/content-l1` 的排序口径一致），
+ * 只有显式 `region: 'world'` 才算世界条目。
+ */
+export function eventRegion(event: HistoricalEvent): HistoricalEventRegion {
+  return event.region === 'world' ? 'world' : 'china'
+}
+
+/** 文明归属标签：「中华」/「世界」。 */
+export function formatEventRegion(event: HistoricalEvent): string {
+  return EVENT_REGION_LABELS[eventRegion(event)]
+}
+
+/**
+ * 地域/朝代标签：优先用内容包的 `origin`（如「中国·北宋」「欧洲·意大利」），
+ * 缺省时退化为文明归属标签，保证轮播标签位永远不为空。
+ */
+export function formatEventOrigin(event: HistoricalEvent): string {
+  const origin = event.origin?.trim()
+  return origin !== undefined && origin.length > 0 ? origin : formatEventRegion(event)
+}
+
+/** 历史事件分类的中文标签。 */
+export const EVENT_CATEGORY_LABELS: Readonly<Record<HistoricalEventCategory, string>> = Object.freeze({
+  political: '政治',
+  military: '军事',
+  culture: '文化',
+  science: '科学',
+  technology: '技术',
+  economy: '经济',
+  society: '社会',
+  life: '生活',
+  disaster: '灾害',
+  sports: '体育',
+  other: '其他',
+})
+
+/** 分类 → 中文标签；未知分类退化为「其他」，不显示英文枚举值。 */
+export function formatEventCategory(category: HistoricalEventCategory): string {
+  return EVENT_CATEGORY_LABELS[category] ?? EVENT_CATEGORY_LABELS.other
+}
+
+/** 历史叙事的日期口径中文标签。 */
+export const EVENT_DATE_KIND_LABELS: Readonly<Record<HistoricalEventDateKind, string>> = Object.freeze({
+  exact: '历史上的今天',
+  period: '华夏文明坐标',
+})
+
+/**
+ * 条目的日期口径：缺省按 `period` 处理——宁可标成「文明坐标」，
+ * 也不把只按年份/朝代入档的条目谎称成「今天发生」。
+ */
+export function eventDateKind(event: HistoricalEvent): HistoricalEventDateKind {
+  return event.dateKind === 'exact' ? 'exact' : 'period'
+}
+
+/** 日期口径的短标签：「历史上的今天」/「华夏文明坐标」。 */
+export function formatEventDateKindLabel(event: HistoricalEvent): string {
+  return EVENT_DATE_KIND_LABELS[eventDateKind(event)]
+}
+
+/**
+ * 轮播卡片上的日期口径长标签。
+ *
+ * - `exact`：`历史上的今天`
+ * - `period`：`华夏文明坐标 · <origin> · <yearLabel>`（如「华夏文明坐标 · 中国·北宋 · 960 年」）
+ *
+ * `period` 带上 origin/yearLabel，避免读者把它误读成「今天发生」。
+ */
+export function formatEventDateKindDetail(event: HistoricalEvent): string {
+  if (eventDateKind(event) === 'exact') return EVENT_DATE_KIND_LABELS.exact
+  return `${EVENT_DATE_KIND_LABELS.period} · ${formatEventOrigin(event)} · ${event.yearLabel}`
+}
+
+/**
+ * 「今日一屏 / 当日一屏」里轮播区块的标题。
+ *
+ * 刻意不再叫「历史叙事」，避免对 `period`（文明坐标，不是当天发生）条目产生误导：
+ * - 当天有 `exact` 条目 → `今日 · 古今中外`（确实有事件发生在今天）
+ * - 全部是 `period` → `华夏文明坐标 · 古今中外`（不提「今天」）
+ * - 0 条 → `古今中外 · 文明坐标`
+ */
+export function carouselSectionTitle(events: readonly HistoricalEvent[]): string {
+  if (events.length === 0) return '古今中外 · 文明坐标'
+  if (events.some((event) => eventDateKind(event) === 'exact')) return '今日 · 古今中外'
+  return '华夏文明坐标 · 古今中外'
 }
 
 /** 历史叙事的出处行：「中国大百科全书 · 公有领域」。原创条目直接署名「原创整理」。 */

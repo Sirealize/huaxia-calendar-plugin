@@ -20,14 +20,33 @@ export const historicalEvents = events as HistoricalEvent[]
 
 export const packManifest = manifest as ContentPackManifest
 
-const byDate = new Map<string, HistoricalEvent>()
+const byDate = new Map<string, HistoricalEvent[]>()
+
 for (const event of historicalEvents) {
   const key = `${event.solar.month}-${event.solar.day}`
-  const prev = byDate.get(key)
-  if (!prev || (event.weight ?? 0) > (prev.weight ?? 0)) byDate.set(key, event)
+  const list = byDate.get(key)
+  if (list) list.push(event)
+  else byDate.set(key, [event])
 }
 
-/** 按公历月日取当天权重最高的一条；无条目返回 undefined（UI 必须优雅降级）。 */
+// 同一天多条时的排序：中华文明优先，其次按 weight 降序，最后按年份升序（古今中外里「古」在前）。
+for (const list of byDate.values()) {
+  list.sort((a, b) => {
+    const regionA = a.region === 'world' ? 1 : 0
+    const regionB = b.region === 'world' ? 1 : 0
+    if (regionA !== regionB) return regionA - regionB
+    const weightDiff = (b.weight ?? 0) - (a.weight ?? 0)
+    if (weightDiff !== 0) return weightDiff
+    return a.eventYear - b.eventYear
+  })
+}
+
+/** 按公历月日取当天全部条目（已排序：中华文明优先）；无条目返回空数组。 */
+export function getEventsForDate(month: number, day: number): HistoricalEvent[] {
+  return byDate.get(`${month}-${day}`) ?? []
+}
+
+/** 按公历月日取当天第一条（兼容旧调用）；无条目返回 undefined。 */
 export function getEventForDate(month: number, day: number): HistoricalEvent | undefined {
-  return byDate.get(`${month}-${day}`)
+  return getEventsForDate(month, day)[0]
 }

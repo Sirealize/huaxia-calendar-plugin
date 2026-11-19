@@ -9,6 +9,8 @@
  * - 显示当月每一天（公历日 + 农历日/节气），星期表头 + 7 列网格；
  * - 切换年 / 月，另有「今天」；
  * - 点击某天 → 该日高亮，卡片底部一行显示该日农历 + 干支 + 节气/节日/叙事标题；
+ * - 当天多条历史叙事时，该行带 `1/3` 计数，点击切下一条；当前条目为 `period`
+ *   （文明坐标，不是当天发生）时行尾标「文明坐标」（0.3.0）；
  * - 拖动标题栏到任意位置（视口内钳制）；
  * - 收起 / 展开（收起态是一条小条，显示今天农历日 + 今日节气）；
  * - 「打开完整日历」按钮 —— 动作由宿主通过 props 回调传入（ui-react 不 import 任何 `@deepseek-ai/*`）。
@@ -24,7 +26,14 @@ import {
   type CalendarDate,
   type CalendarDay,
 } from './pure/calendar.ts'
-import { WEEKDAY_SHORT, formatCellCaption, formatMiniDayLine, formatPill } from './pure/format.ts'
+import { stepCarouselIndex, wrapCarouselIndex } from './pure/carousel.ts'
+import {
+  WEEKDAY_SHORT,
+  eventDateKind,
+  formatCellCaption,
+  formatMiniDayLine,
+  formatPill,
+} from './pure/format.ts'
 import {
   OVERLAY_MARGIN,
   clampOverlayRect,
@@ -86,6 +95,27 @@ const buttonStyle: CalendarStyle = {
   fontFamily: TOKENS.fontText,
   fontSize: fontSize(-3),
   lineHeight: 1,
+  cursor: 'pointer',
+}
+
+/** 当日多条的计数按钮：`1/3`，点击切下一条。 */
+const miniCountButtonStyle: CalendarStyle = {
+  appearance: 'none',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flex: '0 0 auto',
+  minWidth: 26,
+  height: 15,
+  padding: '0 4px',
+  border: `1px solid ${TOKENS.borderL2}`,
+  borderRadius: 999,
+  background: TOKENS.bgModule,
+  color: TOKENS.labelSecondary,
+  fontFamily: TOKENS.fontText,
+  fontSize: fontSize(-4.5),
+  lineHeight: 1,
+  fontVariantNumeric: 'tabular-nums',
   cursor: 'pointer',
 }
 
@@ -234,6 +264,23 @@ export function MiniCalendar(props: MiniCalendarProps): ReactElement | null {
   const grid = useMemo(() => buildMonthGrid(view.year, view.month, { today }), [view, today])
   const selectedBrief = useMemo(() => buildDayBrief(selected), [selected])
   const todayBrief = useMemo(() => buildDayBrief(today), [today])
+
+  // 当天多条历史叙事：底部信息行显示 `1/3` 计数，点击切下一条（0.3.0）。
+  // 切换选中日期时回到第 1 条（渲染期校正，不等副作用）。
+  const selectedKey = toDateKey(selected)
+  const selectedEvents = selectedBrief.events
+  const [detailIndex, setDetailIndex] = useState(0)
+  const [detailDateKey, setDetailDateKey] = useState(selectedKey)
+  if (detailDateKey !== selectedKey) {
+    setDetailDateKey(selectedKey)
+    setDetailIndex(0)
+  }
+  const detailEventIndex = wrapCarouselIndex(detailIndex, selectedEvents.length)
+  const detailEvent = selectedEvents[detailEventIndex]
+  const detailKind = detailEvent === undefined ? undefined : eventDateKind(detailEvent)
+  const cycleDetailEvent = useCallback(() => {
+    setDetailIndex((prev) => stepCarouselIndex(prev, 1, selectedEvents.length))
+  }, [selectedEvents.length])
 
   const stepMonths = useCallback((delta: number) => {
     setView((prev) => shiftYearMonth(prev, delta))
@@ -391,7 +438,12 @@ export function MiniCalendar(props: MiniCalendarProps): ReactElement | null {
   )
 
   const pill = formatPill(todayBrief)
-  const selectedLine = formatMiniDayLine(selectedBrief, { isToday: isSameDate(selected, today) })
+  const selectedLine = formatMiniDayLine(selectedBrief, {
+    isToday: isSameDate(selected, today),
+    eventIndex: detailEventIndex,
+  })
+  const detailCountText =
+    selectedEvents.length > 1 ? `${detailEventIndex + 1}/${selectedEvents.length}` : ''
 
   return (
     <div
@@ -564,10 +616,11 @@ export function MiniCalendar(props: MiniCalendarProps): ReactElement | null {
             })}
           </div>
 
-          {/* 选中日一行信息：农历 + 干支 + 节气 / 节日 / 叙事标题 */}
+          {/* 选中日一行信息：农历 + 干支 + 节气 / 节日 / 叙事标题（多条时带计数） */}
           <div
             data-huaxia-mini-detail=""
-            title={selectedLine}
+            {...(detailKind === undefined ? null : { 'data-huaxia-mini-date-kind': detailKind })}
+            title={detailCountText.length > 0 ? `${selectedLine}（${detailCountText}）` : selectedLine}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -593,7 +646,24 @@ export function MiniCalendar(props: MiniCalendarProps): ReactElement | null {
                 background: isSameDate(selected, today) ? TOKENS.brandPrimary : TOKENS.labelCaption,
               }}
             />
-            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{selectedLine}</span>
+            <span
+              data-huaxia-mini-detail-text=""
+              style={{ flex: '1 1 auto', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis' }}
+            >
+              {selectedLine}
+            </span>
+            {detailCountText.length > 0 ? (
+              <button
+                type="button"
+                data-huaxia-mini-count=""
+                aria-label={`切换历史叙事（第 ${detailEventIndex + 1} 条，共 ${selectedEvents.length} 条）`}
+                title="点击切换下一条历史叙事"
+                onClick={cycleDetailEvent}
+                style={miniCountButtonStyle}
+              >
+                {detailCountText}
+              </button>
+            ) : null}
           </div>
         </>
       )}

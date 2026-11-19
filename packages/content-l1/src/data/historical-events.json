@@ -1,422 +1,2162 @@
 [
   {
     "id": "he-1118-001",
-    "solar": { "month": 11, "day": 18 },
-    "eventYear": 1883,
-    "yearLabel": "1883 年",
-    "title": "北美铁路启用标准时间",
-    "summary": "1883 年 11 月 18 日，北美各大铁路公司同时启用按经线划分的五个标准时区，取代各地各行其是的太阳时。这一天被称作“两度正午之日”，混乱的列车时刻表由此统一，也为现代全球时区制度提供了直接范本。",
-    "category": "society",
-    "tags": ["标准时间", "时区", "铁路"],
-    "weight": 60,
+    "solar": {
+      "month": 11,
+      "day": 18
+    },
+    "eventYear": -221,
+    "yearLabel": "公元前 221 年",
+    "title": "秦灭六国完成统一",
+    "summary": "公元前 221 年，秦王嬴政先后灭掉韩、赵、魏、楚、燕、齐六国，结束春秋战国数百年的分裂局面，建立中国历史上第一个中央集权的统一王朝，并推行郡县制，统一文字、货币与度量衡。",
+    "category": "political",
+    "region": "china",
+    "origin": "中国·秦",
+    "dateKind": "period",
+    "tags": [
+      "秦朝",
+      "大一统",
+      "郡县制"
+    ],
+    "weight": 98,
     "source": "原创整理",
     "license": "self-authored",
-    "retrievedAt": "2026-11-18"
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1118-002",
+    "solar": {
+      "month": 11,
+      "day": 18
+    },
+    "eventYear": 105,
+    "yearLabel": "105 年",
+    "title": "蔡伦改进造纸工艺",
+    "summary": "公元 105 年，东汉蔡伦总结前人经验，用树皮、麻头、破布与旧渔网等原料改进造纸工艺，造出轻薄易写的纸张。造纸术此后经丝绸之路西传，成为影响世界文明进程的四大发明之一。",
+    "category": "technology",
+    "region": "china",
+    "origin": "中国·东汉",
+    "dateKind": "period",
+    "tags": [
+      "造纸术",
+      "四大发明",
+      "东汉"
+    ],
+    "weight": 96,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1118-003",
+    "solar": {
+      "month": 11,
+      "day": 18
+    },
+    "eventYear": 1962,
+    "yearLabel": "1962 年",
+    "title": "物理学家玻尔逝世",
+    "summary": "1962 年 11 月 18 日，丹麦物理学家尼尔斯·玻尔逝世。他提出的原子模型把量子概念引入原子结构，奠定量子力学的基础；他创建的哥本哈根研究所，成为二十世纪理论物理的重要中心。",
+    "category": "science",
+    "region": "world",
+    "origin": "欧洲·丹麦",
+    "dateKind": "exact",
+    "tags": [
+      "量子力学",
+      "原子模型",
+      "丹麦"
+    ],
+    "weight": 62,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
   },
   {
     "id": "he-1119-001",
-    "solar": { "month": 11, "day": 19 },
-    "eventYear": 1863,
-    "yearLabel": "1863 年",
-    "title": "林肯发表葛底斯堡演说",
-    "summary": "1863 年 11 月 19 日，美国为葛底斯堡国家公墓举行落成仪式，林肯在仪式上发表简短演说，以“民有、民治、民享”概括政府理念。这篇短文成为政治演说史上的典范，也常被视作现代公共表达与公民教育的经典文本。",
-    "category": "culture",
-    "tags": ["演说", "公共表达", "19世纪"],
-    "weight": 55,
+    "solar": {
+      "month": 11,
+      "day": 19
+    },
+    "eventYear": -138,
+    "yearLabel": "公元前 138 年",
+    "title": "张骞首次出使西域",
+    "summary": "公元前 138 年，汉使张骞奉命出使西域，历经十余年方归长安，首次带回中亚诸国的地理与物产信息。此后汉朝与西域往来日密，绿洲商道逐渐连成贯通欧亚的丝绸之路。",
+    "category": "economy",
+    "region": "china",
+    "origin": "中国·西汉",
+    "dateKind": "period",
+    "tags": [
+      "丝绸之路",
+      "张骞",
+      "西域"
+    ],
+    "weight": 98,
     "source": "原创整理",
     "license": "self-authored",
-    "retrievedAt": "2026-11-18"
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1119-002",
+    "solar": {
+      "month": 11,
+      "day": 19
+    },
+    "eventYear": 605,
+    "yearLabel": "605 年",
+    "title": "隋朝创立科举取士",
+    "summary": "公元 605 年，隋炀帝设进士科，以考试成绩选拔人才，科举制度由此发端。它把选官权收归中央，让寒门读书人获得上升通道，深刻塑造了此后一千三百年中国的官僚制度与教育传统。",
+    "category": "political",
+    "region": "china",
+    "origin": "中国·隋",
+    "dateKind": "period",
+    "tags": [
+      "科举制",
+      "进士科",
+      "选官"
+    ],
+    "weight": 94,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1119-003",
+    "solar": {
+      "month": 11,
+      "day": 19
+    },
+    "eventYear": 1942,
+    "yearLabel": "1942 年",
+    "title": "斯大林格勒反攻开始",
+    "summary": "1942 年 11 月 19 日，苏军在斯大林格勒两翼发起大规模反攻，合围德军重兵集团，战役由此转入转折。这场会战是第二次世界大战欧洲战场的关键节点，也以惨重伤亡成为二十世纪的深刻教训。",
+    "category": "military",
+    "region": "world",
+    "origin": "欧洲·苏联",
+    "dateKind": "exact",
+    "tags": [
+      "二战",
+      "会战",
+      "转折"
+    ],
+    "weight": 64,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
   },
   {
     "id": "he-1120-001",
-    "solar": { "month": 11, "day": 20 },
-    "eventYear": 1999,
-    "yearLabel": "1999 年",
-    "title": "神舟一号无人试验飞船发射",
-    "summary": "1999 年 11 月 20 日凌晨，神舟一号无人试验飞船在酒泉卫星发射中心由长征二号 F 火箭发射升空，在轨飞行约 21 小时后安全返回。这是中国载人航天工程的首次飞行试验，标志着载人航天技术取得关键突破。",
+    "solar": {
+      "month": 11,
+      "day": 20
+    },
+    "eventYear": -256,
+    "yearLabel": "公元前 256 年",
+    "title": "李冰主持修建都江堰",
+    "summary": "公元前 256 年前后，秦国蜀郡太守李冰主持修建都江堰，以鱼嘴、飞沙堰、宝瓶口三大工程分流岷江，兼具防洪与灌溉之利。这项无坝引水工程两千余年仍在运行，使成都平原成为天府之国。",
     "category": "technology",
-    "tags": ["载人航天", "神舟", "1999"],
-    "weight": 85,
+    "region": "china",
+    "origin": "中国·战国",
+    "dateKind": "period",
+    "tags": [
+      "都江堰",
+      "水利",
+      "李冰"
+    ],
+    "weight": 97,
     "source": "原创整理",
     "license": "self-authored",
-    "retrievedAt": "2026-11-18"
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1120-002",
+    "solar": {
+      "month": 11,
+      "day": 20
+    },
+    "eventYear": 1999,
+    "yearLabel": "1999 年",
+    "title": "神舟一号无人飞船升空",
+    "summary": "1999 年 11 月 20 日，神舟一号无人试验飞船在酒泉卫星发射中心由长征二号 F 火箭发射升空，在轨飞行约 21 小时后安全返回。这是中国载人航天工程的首次飞行试验，为后续载人飞行奠定技术基础。",
+    "category": "technology",
+    "region": "china",
+    "origin": "中国·当代",
+    "dateKind": "exact",
+    "tags": [
+      "载人航天",
+      "神舟",
+      "1999"
+    ],
+    "weight": 86,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1120-003",
+    "solar": {
+      "month": 11,
+      "day": 20
+    },
+    "eventYear": 1910,
+    "yearLabel": "1910 年",
+    "title": "墨西哥革命拉开序幕",
+    "summary": "1910 年 11 月 20 日，墨西哥革命爆发。马德罗号召推翻长期执政的迪亚斯政权，各地农民与工人相继起事，革命持续十余年，推动土地改革与 1917 年宪法的制定，深刻改变了墨西哥的政治格局。",
+    "category": "political",
+    "region": "world",
+    "origin": "拉美·墨西哥",
+    "dateKind": "exact",
+    "tags": [
+      "墨西哥革命",
+      "土地改革",
+      "拉美"
+    ],
+    "weight": 58,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
   },
   {
     "id": "he-1121-001",
-    "solar": { "month": 11, "day": 21 },
-    "eventYear": 1783,
-    "yearLabel": "1783 年",
-    "title": "人类首次载人热气球飞行",
-    "summary": "1783 年 11 月 21 日，法国人罗齐耶与达尔朗德乘蒙戈尔菲耶兄弟设计的热气球升空，在巴黎上空飞行约 25 分钟后安全落地。这是人类首次有记录的载人自由飞行，为后来航空技术的发展打开了大门。",
-    "category": "technology",
-    "tags": ["热气球", "航空", "18世纪"],
-    "weight": 75,
+    "solar": {
+      "month": 11,
+      "day": 21
+    },
+    "eventYear": -91,
+    "yearLabel": "公元前 91 年",
+    "title": "司马迁完成《史记》",
+    "summary": "公元前 91 年，司马迁撰成《史记》。全书一百三十篇，记载上起传说中的黄帝、下至汉武帝时期约三千年的历史，首创纪传体通史体例，被后世尊为史家典范，也奠定了中国叙事史学的传统。",
+    "category": "culture",
+    "region": "china",
+    "origin": "中国·西汉",
+    "dateKind": "period",
+    "tags": [
+      "史记",
+      "司马迁",
+      "纪传体"
+    ],
+    "weight": 95,
     "source": "原创整理",
     "license": "self-authored",
-    "retrievedAt": "2026-11-18"
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1121-002",
+    "solar": {
+      "month": 11,
+      "day": 21
+    },
+    "eventYear": 868,
+    "yearLabel": "868 年",
+    "title": "雕版印刷《金刚经》",
+    "summary": "公元 868 年，王玠为父母祈福刻印《金刚经》一卷，卷末题记明确记载了刻印时间。这卷出自敦煌的印本，是世界上有明确纪年的最早雕版印刷品之一，见证印刷术在唐代已趋成熟。",
+    "category": "technology",
+    "region": "china",
+    "origin": "中国·唐",
+    "dateKind": "period",
+    "tags": [
+      "雕版印刷",
+      "金刚经",
+      "敦煌"
+    ],
+    "weight": 94,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1121-003",
+    "solar": {
+      "month": 11,
+      "day": 21
+    },
+    "eventYear": 1783,
+    "yearLabel": "1783 年",
+    "title": "首次载人热气球飞行",
+    "summary": "1783 年 11 月 21 日，罗齐耶与达尔朗德乘蒙戈尔菲耶兄弟设计的热气球在巴黎上空飞行约 25 分钟后安全落地。这是人类首次有记录的载人自由飞行，为此后航空技术的发展打开大门。",
+    "category": "technology",
+    "region": "world",
+    "origin": "欧洲·法国",
+    "dateKind": "exact",
+    "tags": [
+      "热气球",
+      "航空",
+      "法国"
+    ],
+    "weight": 60,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
   },
   {
     "id": "he-1122-001",
-    "solar": { "month": 11, "day": 22 },
+    "solar": {
+      "month": 11,
+      "day": 22
+    },
+    "eventYear": 605,
+    "yearLabel": "605 年",
+    "title": "隋炀帝开凿大运河",
+    "summary": "公元 605 年，隋炀帝下令开凿贯通南北的大运河，以洛阳为中心，北抵涿郡、南达余杭，沟通海河、黄河、淮河、长江、钱塘江五大水系。运河长期承担漕运与南北物资交流，是古代最重要的水运干线。",
+    "category": "technology",
+    "region": "china",
+    "origin": "中国·隋",
+    "dateKind": "period",
+    "tags": [
+      "大运河",
+      "漕运",
+      "水利"
+    ],
+    "weight": 97,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1122-002",
+    "solar": {
+      "month": 11,
+      "day": 22
+    },
+    "eventYear": 653,
+    "yearLabel": "653 年",
+    "title": "《唐律疏议》颁行",
+    "summary": "公元 653 年，唐高宗命长孙无忌等为《永徽律》作注疏并颁行天下，即《唐律疏议》。它确立礼法结合、科条简要的立法风格，是中国现存最早最完整的古代法典，也为东亚各国法律提供了范本。",
+    "category": "political",
+    "region": "china",
+    "origin": "中国·唐",
+    "dateKind": "period",
+    "tags": [
+      "唐律疏议",
+      "法典",
+      "中华法系"
+    ],
+    "weight": 95,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1122-003",
+    "solar": {
+      "month": 11,
+      "day": 22
+    },
     "eventYear": 1497,
     "yearLabel": "1497 年",
     "title": "达伽马船队绕过好望角",
-    "summary": "1497 年 11 月 22 日，葡萄牙航海家达伽马的船队绕过非洲南端的好望角，进入印度洋，为次年抵达印度铺平道路。这条航线把大西洋与印度洋的贸易连成一体，改变了此后数百年的世界贸易格局。",
+    "summary": "1497 年 11 月 22 日，葡萄牙航海家达伽马的船队绕过非洲南端的好望角，进入印度洋，为次年抵达印度铺平道路。这条航线把大西洋与印度洋贸易连成一体，改变了此后数百年的世界贸易格局。",
     "category": "economy",
-    "tags": ["大航海", "航线", "贸易"],
-    "weight": 70,
+    "region": "world",
+    "origin": "欧洲·葡萄牙",
+    "dateKind": "exact",
+    "tags": [
+      "大航海",
+      "航线",
+      "贸易"
+    ],
+    "weight": 63,
     "source": "原创整理",
     "license": "self-authored",
-    "retrievedAt": "2026-11-18"
+    "retrievedAt": "2026-11-19"
   },
   {
     "id": "he-1123-001",
-    "solar": { "month": 11, "day": 23 },
-    "eventYear": 1889,
-    "yearLabel": "1889 年",
-    "title": "首台投币点唱机投入使用",
-    "summary": "1889 年 11 月 23 日，美国旧金山一家酒馆里出现了世界上第一台投币自动留声机：投一枚五分硬币，就能从听筒里听到一段录音。它把录音技术变成大众可付费消费的娱乐服务，被视为点唱机与音乐零售业的雏形。",
-    "category": "technology",
-    "tags": ["留声机", "点唱机", "娱乐"],
-    "weight": 55,
+    "solar": {
+      "month": 11,
+      "day": 23
+    },
+    "eventYear": 1405,
+    "yearLabel": "1405 年",
+    "title": "郑和率船队下西洋",
+    "summary": "1405 年，明成祖命郑和率船队自刘家港出发，此后七次远航西洋，最远抵达东非海岸。船队以罗盘导航，规模与航程在当时世界罕有其匹，推动了明朝与东南亚、印度洋沿岸各国的贸易与文化交流。",
+    "category": "economy",
+    "region": "china",
+    "origin": "中国·明",
+    "dateKind": "period",
+    "tags": [
+      "郑和下西洋",
+      "航海",
+      "罗盘"
+    ],
+    "weight": 99,
     "source": "原创整理",
     "license": "self-authored",
-    "retrievedAt": "2026-11-18"
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1123-002",
+    "solar": {
+      "month": 11,
+      "day": 23
+    },
+    "eventYear": 1408,
+    "yearLabel": "1408 年",
+    "title": "《永乐大典》抄成",
+    "summary": "1408 年，《永乐大典》抄录完成。全书两万两千余卷，汇集经史子集与百家之书，以韵目编排，保存了大量后世散佚的古籍。它是中国古代规模最大的类书，也是世界早期百科全书式的文献汇编。",
+    "category": "culture",
+    "region": "china",
+    "origin": "中国·明",
+    "dateKind": "period",
+    "tags": [
+      "永乐大典",
+      "类书",
+      "文献"
+    ],
+    "weight": 96,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1123-003",
+    "solar": {
+      "month": 11,
+      "day": 23
+    },
+    "eventYear": 1963,
+    "yearLabel": "1963 年",
+    "title": "《神秘博士》首播",
+    "summary": "1963 年 11 月 23 日，英国广播公司播出科幻剧《神秘博士》第一集。该剧此后持续播出数十年，成为英国电视史上最长寿的科幻系列，也让时间旅行题材进入大众文化，影响了几代观众与创作者。",
+    "category": "culture",
+    "region": "world",
+    "origin": "欧洲·英国",
+    "dateKind": "exact",
+    "tags": [
+      "科幻",
+      "电视",
+      "流行文化"
+    ],
+    "weight": 48,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
   },
   {
     "id": "he-1124-001",
-    "solar": { "month": 11, "day": 24 },
-    "eventYear": 1859,
-    "yearLabel": "1859 年",
-    "title": "《物种起源》在伦敦出版",
-    "summary": "1859 年 11 月 24 日，达尔文的《物种起源》在伦敦出版，首印 1250 册当天售罄。书中以自然选择解释物种演变，把生物学从分类描述推进到统一的理论框架，深刻影响了此后的科学、哲学与公共思想。",
-    "category": "science",
-    "tags": ["达尔文", "进化论", "生物学"],
-    "weight": 95,
+    "solar": {
+      "month": 11,
+      "day": 24
+    },
+    "eventYear": 629,
+    "yearLabel": "629 年",
+    "title": "玄奘启程西行求法",
+    "summary": "629 年，玄奘自长安出发西行求法，历时十七年，行程数万里，遍访天竺诸国，带回佛经六百余部。他主持译经并口述《大唐西域记》，为研究中亚与南亚的历史地理留下珍贵文献。",
+    "category": "culture",
+    "region": "china",
+    "origin": "中国·唐",
+    "dateKind": "period",
+    "tags": [
+      "玄奘",
+      "大唐西域记",
+      "译经"
+    ],
+    "weight": 97,
     "source": "原创整理",
     "license": "self-authored",
-    "retrievedAt": "2026-11-18"
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1124-002",
+    "solar": {
+      "month": 11,
+      "day": 24
+    },
+    "eventYear": 2020,
+    "yearLabel": "2020 年",
+    "title": "嫦娥五号发射升空",
+    "summary": "2020 年 11 月 24 日，嫦娥五号探测器由长征五号火箭发射升空，完成月面采样后携 1731 克月球样品返回地球。这是中国首次月球采样返回任务，标志着探月工程「绕、落、回」三步走规划收官。",
+    "category": "technology",
+    "region": "china",
+    "origin": "中国·当代",
+    "dateKind": "exact",
+    "tags": [
+      "探月",
+      "嫦娥五号",
+      "采样返回"
+    ],
+    "weight": 88,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1124-003",
+    "solar": {
+      "month": 11,
+      "day": 24
+    },
+    "eventYear": 1859,
+    "yearLabel": "1859 年",
+    "title": "《物种起源》出版",
+    "summary": "1859 年 11 月 24 日，达尔文《物种起源》在伦敦出版，首印一千余册当天售罄。书中以自然选择解释物种演变，把生物学从分类描述推进到统一的理论框架，深刻影响了此后的科学、哲学与公共思想。",
+    "category": "science",
+    "region": "world",
+    "origin": "欧洲·英国",
+    "dateKind": "exact",
+    "tags": [
+      "达尔文",
+      "进化论",
+      "生物学"
+    ],
+    "weight": 66,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
   },
   {
     "id": "he-1125-001",
-    "solar": { "month": 11, "day": 25 },
+    "solar": {
+      "month": 11,
+      "day": 25
+    },
+    "eventYear": 132,
+    "yearLabel": "132 年",
+    "title": "张衡造候风地动仪",
+    "summary": "公元 132 年，东汉张衡制成候风地动仪，以八条龙口衔铜丸、下置蟾蜍承之的结构，感知地震波传来的方向。史载其曾测报陇西地震，这是世界上有记录的最早地震探测仪器，体现汉代机械制造水平。",
+    "category": "science",
+    "region": "china",
+    "origin": "中国·东汉",
+    "dateKind": "period",
+    "tags": [
+      "地动仪",
+      "张衡",
+      "地震"
+    ],
+    "weight": 96,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1125-002",
+    "solar": {
+      "month": 11,
+      "day": 25
+    },
     "eventYear": 1978,
     "yearLabel": "1978 年",
     "title": "三北防护林工程启动",
-    "summary": "1978 年 11 月 25 日，国务院批转在三北风沙危害与水土流失重点地区建设大型防护林的规划，三北防护林体系工程由此启动。这项横跨西北、华北、东北的生态工程持续数十年，是中国大规模生态治理的开端。",
+    "summary": "1978 年 11 月 25 日，国务院批转在三北风沙危害与水土流失重点地区建设大型防护林的规划，三北防护林体系工程由此启动。工程横跨西北、华北、东北，持续数十年，是中国大规模生态治理的开端。",
     "category": "society",
-    "tags": ["生态治理", "防护林", "1978"],
-    "weight": 80,
+    "region": "china",
+    "origin": "中国·当代",
+    "dateKind": "exact",
+    "tags": [
+      "生态治理",
+      "防护林",
+      "1978"
+    ],
+    "weight": 85,
     "source": "原创整理",
     "license": "self-authored",
-    "retrievedAt": "2026-11-18"
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1125-003",
+    "solar": {
+      "month": 11,
+      "day": 25
+    },
+    "eventYear": 1915,
+    "yearLabel": "1915 年",
+    "title": "广义相对论场方程提出",
+    "summary": "1915 年 11 月 25 日，爱因斯坦在柏林普鲁士科学院提交包含引力场方程的论文，广义相对论由此定型。这一理论把引力解释为时空弯曲，彻底改变了人类对时间、空间与宇宙结构的理解。",
+    "category": "science",
+    "region": "world",
+    "origin": "欧洲·德国",
+    "dateKind": "exact",
+    "tags": [
+      "相对论",
+      "爱因斯坦",
+      "物理学"
+    ],
+    "weight": 65,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
   },
   {
     "id": "he-1126-001",
-    "solar": { "month": 11, "day": 26 },
-    "eventYear": 1922,
-    "yearLabel": "1922 年",
-    "title": "图坦卡蒙墓室被打开",
-    "summary": "1922 年 11 月 26 日，考古学家卡特在埃及帝王谷的墓室门壁上凿开小孔，借烛光窥见前室中封存三千余年的随葬品。墓葬保存之完整在考古史上极为罕见，为研究古埃及的王权、工艺与信仰提供了珍贵材料，也让埃及学进入大众视野。",
-    "category": "culture",
-    "tags": ["考古", "古埃及", "图坦卡蒙"],
-    "weight": 75,
+    "solar": {
+      "month": 11,
+      "day": 26
+    },
+    "eventYear": 1023,
+    "yearLabel": "1023 年",
+    "title": "北宋官办交子发行",
+    "summary": "1023 年，北宋在成都设益州交子务，由官府统一发行交子。此前民间交子已在四川流通，代替沉重的铁钱。作为世界上较早的纸币，交子的出现反映了宋代商品经济的繁荣与信用制度的发展。",
+    "category": "economy",
+    "region": "china",
+    "origin": "中国·北宋",
+    "dateKind": "period",
+    "tags": [
+      "交子",
+      "纸币",
+      "宋代经济"
+    ],
+    "weight": 93,
     "source": "原创整理",
     "license": "self-authored",
-    "retrievedAt": "2026-11-18"
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1126-002",
+    "solar": {
+      "month": 11,
+      "day": 26
+    },
+    "eventYear": 1990,
+    "yearLabel": "1990 年",
+    "title": "上海证券交易所成立",
+    "summary": "1990 年 11 月 26 日，上海证券交易所成立，同年 12 月 19 日正式开业。它是改革开放后中国大陆重建的第一家证券交易所，标志资本市场重新起步，此后逐步形成覆盖股票、债券、基金的市场体系。",
+    "category": "economy",
+    "region": "china",
+    "origin": "中国·当代",
+    "dateKind": "exact",
+    "tags": [
+      "证券",
+      "资本市场",
+      "上海"
+    ],
+    "weight": 84,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1126-003",
+    "solar": {
+      "month": 11,
+      "day": 26
+    },
+    "eventYear": 1949,
+    "yearLabel": "1949 年",
+    "title": "印度制宪会议通过宪法",
+    "summary": "1949 年 11 月 26 日，印度制宪会议通过宪法，并于 1950 年 1 月 26 日生效。这部宪法确立议会民主制与联邦制，废除不可接触制，篇幅居世界前列，为南亚现代国家的制度建设提供了重要参照。",
+    "category": "political",
+    "region": "world",
+    "origin": "南亚·印度",
+    "dateKind": "exact",
+    "tags": [
+      "宪法",
+      "印度",
+      "联邦制"
+    ],
+    "weight": 57,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
   },
   {
     "id": "he-1127-001",
-    "solar": { "month": 11, "day": 27 },
-    "eventYear": 1895,
-    "yearLabel": "1895 年",
-    "title": "诺贝尔立遗嘱设立诺贝尔奖",
-    "summary": "1895 年 11 月 27 日，瑞典化学家诺贝尔在巴黎签署遗嘱，将大部分遗产用于设立年度奖项，奖励在物理、化学、生理学或医学、文学与和平领域作出贡献的人。诺贝尔奖自 1901 年起颁发，成为最具影响力的国际奖项之一。",
-    "category": "society",
-    "tags": ["诺贝尔奖", "遗嘱", "国际奖项"],
-    "weight": 80,
+    "solar": {
+      "month": 11,
+      "day": 27
+    },
+    "eventYear": 1084,
+    "yearLabel": "1084 年",
+    "title": "《资治通鉴》成书",
+    "summary": "1084 年，司马光主持编成的编年体通史《资治通鉴》完成，记述战国至五代共一千三百余年史事。全书以「鉴于往事，有资于治道」为宗旨，取材严谨、考异详备，成为后世治国与史学的重要参考。",
+    "category": "culture",
+    "region": "china",
+    "origin": "中国·北宋",
+    "dateKind": "period",
+    "tags": [
+      "资治通鉴",
+      "编年体",
+      "司马光"
+    ],
+    "weight": 94,
     "source": "原创整理",
     "license": "self-authored",
-    "retrievedAt": "2026-11-18"
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1127-002",
+    "solar": {
+      "month": 11,
+      "day": 27
+    },
+    "eventYear": 1103,
+    "yearLabel": "1103 年",
+    "title": "《营造法式》颁行",
+    "summary": "1103 年，北宋颁布李诫编修的《营造法式》。全书规定建筑设计、结构、用料与施工规范，并以「材分制」建立模数体系，是中国古代最完备的建筑技术典籍，体现宋代建筑与手工业的高度成熟。",
+    "category": "technology",
+    "region": "china",
+    "origin": "中国·北宋",
+    "dateKind": "period",
+    "tags": [
+      "营造法式",
+      "建筑",
+      "李诫"
+    ],
+    "weight": 92,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1127-003",
+    "solar": {
+      "month": 11,
+      "day": 27
+    },
+    "eventYear": 1895,
+    "yearLabel": "1895 年",
+    "title": "诺贝尔立遗嘱设奖",
+    "summary": "1895 年 11 月 27 日，瑞典发明家诺贝尔签署遗嘱，将遗产的大部分设立基金，奖励在物理、化学、生理学或医学、文学与和平领域作出贡献的人。诺贝尔奖自 1901 年起颁发，成为最具影响力的国际奖项之一。",
+    "category": "society",
+    "region": "world",
+    "origin": "欧洲·瑞典",
+    "dateKind": "exact",
+    "tags": [
+      "诺贝尔奖",
+      "遗嘱",
+      "瑞典"
+    ],
+    "weight": 61,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
   },
   {
     "id": "he-1128-001",
-    "solar": { "month": 11, "day": 28 },
-    "eventYear": 1520,
-    "yearLabel": "1520 年",
-    "title": "麦哲伦船队驶入太平洋",
-    "summary": "1520 年 11 月 28 日，麦哲伦船队穿过后来以他命名的海峡，驶入一片风平浪静的大洋，他称之为“太平洋”。这次航行首次把大西洋与太平洋连通，为人类认识地球的尺度与全球航路提供了关键证据。",
-    "category": "society",
-    "tags": ["大航海", "太平洋", "麦哲伦"],
-    "weight": 75,
+    "solar": {
+      "month": 11,
+      "day": 28
+    },
+    "eventYear": 1069,
+    "yearLabel": "1069 年",
+    "title": "王安石主持熙宁变法",
+    "summary": "1069 年，宋神宗任用王安石推行新法，陆续实施青苗、募役、方田均税、保甲等制度，意在富国强兵。这场变法持续十余年，触动既有利益，朝野争论激烈，成为中国历史上影响深远的改革实验。",
+    "category": "political",
+    "region": "china",
+    "origin": "中国·北宋",
+    "dateKind": "period",
+    "tags": [
+      "王安石变法",
+      "熙宁",
+      "改革"
+    ],
+    "weight": 95,
     "source": "原创整理",
     "license": "self-authored",
-    "retrievedAt": "2026-11-18"
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1128-002",
+    "solar": {
+      "month": 11,
+      "day": 28
+    },
+    "eventYear": 1247,
+    "yearLabel": "1247 年",
+    "title": "宋慈《洗冤集录》成书",
+    "summary": "1247 年，宋慈总结多年办案经验写成《洗冤集录》，系统记载尸检方法、死亡征象与检验规范。这部法医学专著比欧洲同类著作早数百年，是中国古代司法检验技术的集大成之作。",
+    "category": "science",
+    "region": "china",
+    "origin": "中国·南宋",
+    "dateKind": "period",
+    "tags": [
+      "洗冤集录",
+      "法医学",
+      "宋慈"
+    ],
+    "weight": 92,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1128-003",
+    "solar": {
+      "month": 11,
+      "day": 28
+    },
+    "eventYear": 1943,
+    "yearLabel": "1943 年",
+    "title": "苏美英德黑兰会议",
+    "summary": "1943 年 11 月 28 日，三国领导人在伊朗首都德黑兰举行会议，商讨对德作战与战后安排，并确定开辟第二战场。会议是反法西斯同盟协调行动的标志性事件，也预示了战后国际格局的走向。",
+    "category": "political",
+    "region": "world",
+    "origin": "亚洲·伊朗",
+    "dateKind": "exact",
+    "tags": [
+      "德黑兰会议",
+      "二战",
+      "同盟"
+    ],
+    "weight": 56,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
   },
   {
     "id": "he-1129-001",
-    "solar": { "month": 11, "day": 29 },
+    "solar": {
+      "month": 11,
+      "day": 29
+    },
+    "eventYear": 1004,
+    "yearLabel": "1004 年",
+    "title": "景德镇因年号得名",
+    "summary": "1004 年，北宋以「景德」年号赐名昌南镇为景德镇，此地窑业因水土宜陶而大兴。此后数百年间，景德镇汇集各地制瓷技艺，烧造青白瓷、青花瓷等名品，逐渐成为中国的制瓷中心与重要外销产地。",
+    "category": "economy",
+    "region": "china",
+    "origin": "中国·北宋",
+    "dateKind": "period",
+    "tags": [
+      "景德镇",
+      "瓷器",
+      "窑业"
+    ],
+    "weight": 91,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1129-002",
+    "solar": {
+      "month": 11,
+      "day": 29
+    },
     "eventYear": 1975,
     "yearLabel": "1975 年",
-    "title": "中国首颗返回式卫星回收成功",
-    "summary": "1975 年 11 月 29 日，中国第一颗返回式遥感卫星在轨运行三天后按计划返回地面。中国由此成为继苏联、美国之后第三个掌握卫星回收技术的国家，为后续遥感、载人航天与空间科学任务打下基础。",
+    "title": "首颗返回式卫星回收",
+    "summary": "1975 年 11 月 29 日，中国第一颗返回式遥感卫星在预定区域成功回收。卫星于 11 月 26 日发射，在轨运行三天后按计划返回，使中国成为世界上第三个掌握卫星返回技术的国家，为遥感应用积累经验。",
     "category": "technology",
-    "tags": ["返回式卫星", "航天", "遥感"],
+    "region": "china",
+    "origin": "中国·当代",
+    "dateKind": "exact",
+    "tags": [
+      "返回式卫星",
+      "航天",
+      "1975"
+    ],
     "weight": 85,
     "source": "原创整理",
     "license": "self-authored",
-    "retrievedAt": "2026-11-18"
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1129-003",
+    "solar": {
+      "month": 11,
+      "day": 29
+    },
+    "eventYear": 1945,
+    "yearLabel": "1945 年",
+    "title": "南斯拉夫联邦宣告成立",
+    "summary": "1945 年 11 月 29 日，南斯拉夫制宪会议宣布成立南斯拉夫联邦人民共和国，由六个共和国组成。这一联邦体制在此后数十年间维系了多民族国家的统一，也是二十世纪欧洲联邦制度实践的重要案例。",
+    "category": "political",
+    "region": "world",
+    "origin": "欧洲·南斯拉夫",
+    "dateKind": "exact",
+    "tags": [
+      "联邦制",
+      "南斯拉夫",
+      "1945"
+    ],
+    "weight": 52,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
   },
   {
     "id": "he-1130-001",
-    "solar": { "month": 11, "day": 30 },
-    "eventYear": 1872,
-    "yearLabel": "1872 年",
-    "title": "首场国际足球比赛举行",
-    "summary": "1872 年 11 月 30 日，苏格兰与英格兰在格拉斯哥汉密尔顿新月球场踢成 0 比 0，这是历史上第一场正式国际足球比赛。它确立了现代足球的国际对抗形式，也推动了足球规则与赛事的全球化。",
-    "category": "sports",
-    "tags": ["足球", "国际赛事", "1872"],
-    "weight": 50,
+    "solar": {
+      "month": 11,
+      "day": 30
+    },
+    "eventYear": 1281,
+    "yearLabel": "1281 年",
+    "title": "郭守敬《授时历》颁行",
+    "summary": "1281 年，元朝颁行郭守敬、王恂等编制的《授时历》。它以实测数据为基础，定一回归年为 365.2425 日，与现行公历的数值相同而早三百年，是当时世界最精确的历法之一，体现天文测算的高水平。",
+    "category": "science",
+    "region": "china",
+    "origin": "中国·元",
+    "dateKind": "period",
+    "tags": [
+      "授时历",
+      "郭守敬",
+      "历法"
+    ],
+    "weight": 93,
     "source": "原创整理",
     "license": "self-authored",
-    "retrievedAt": "2026-11-18"
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1130-002",
+    "solar": {
+      "month": 11,
+      "day": 30
+    },
+    "eventYear": 1716,
+    "yearLabel": "1716 年",
+    "title": "《康熙字典》编成",
+    "summary": "1716 年，《康熙字典》编纂完成。全书收字四万七千余个，按部首排列并注明音切、训释与书证，是中国古代收字最多的字典之一，长期作为文字考订与辞书编纂的基础文献。",
+    "category": "culture",
+    "region": "china",
+    "origin": "中国·清",
+    "dateKind": "period",
+    "tags": [
+      "康熙字典",
+      "辞书",
+      "文字"
+    ],
+    "weight": 90,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1130-003",
+    "solar": {
+      "month": 11,
+      "day": 30
+    },
+    "eventYear": 1872,
+    "yearLabel": "1872 年",
+    "title": "首场国际足球比赛",
+    "summary": "1872 年 11 月 30 日，苏格兰与英格兰在格拉斯哥举行首场国际足球比赛，双方 0 比 0 战平。这场比赛推动了统一规则的传播，现代足球由此逐步成为全球参与人数最多的运动之一。",
+    "category": "sports",
+    "region": "world",
+    "origin": "欧洲·英国",
+    "dateKind": "exact",
+    "tags": [
+      "足球",
+      "体育",
+      "规则"
+    ],
+    "weight": 55,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
   },
   {
     "id": "he-1201-001",
-    "solar": { "month": 12, "day": 1 },
-    "eventYear": 1959,
-    "yearLabel": "1959 年",
-    "title": "《南极条约》在华盛顿签署",
-    "summary": "1959 年 12 月 1 日，十二个国家在华盛顿签署《南极条约》，规定南极只用于和平与科学目的，冻结领土主张并鼓励科考数据共享。这份条约成为国际治理中“科学优先、和平利用”的早期范例，至今仍是南极事务的基础。",
-    "category": "political",
-    "tags": ["南极条约", "国际治理", "科学考察"],
-    "weight": 80,
+    "solar": {
+      "month": 12,
+      "day": 1
+    },
+    "eventYear": 1637,
+    "yearLabel": "1637 年",
+    "title": "《天工开物》初刊",
+    "summary": "1637 年，宋应星所著《天工开物》初刊。全书分十八卷，记述农业与手工业生产技术，涵盖谷物加工、纺织、制盐、冶铸、造纸、火药等门类，并配版画图解，被称为中国十七世纪的工艺技术百科全书。",
+    "category": "technology",
+    "region": "china",
+    "origin": "中国·明",
+    "dateKind": "period",
+    "tags": [
+      "天工开物",
+      "宋应星",
+      "工艺"
+    ],
+    "weight": 97,
     "source": "原创整理",
     "license": "self-authored",
-    "retrievedAt": "2026-11-18"
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1201-002",
+    "solar": {
+      "month": 12,
+      "day": 1
+    },
+    "eventYear": 460,
+    "yearLabel": "460 年",
+    "title": "北魏开凿云冈石窟",
+    "summary": "460 年，北魏文成帝命昙曜在平城西武州山开凿石窟，即云冈「昙曜五窟」。造像融合犍陀罗艺术与中原风格，气势雄浑，云冈石窟成为北魏佛教艺术与中外文化交流的代表，2001 年列入世界遗产。",
+    "category": "culture",
+    "region": "china",
+    "origin": "中国·北魏",
+    "dateKind": "period",
+    "tags": [
+      "云冈石窟",
+      "北魏",
+      "石窟艺术"
+    ],
+    "weight": 93,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1201-003",
+    "solar": {
+      "month": 12,
+      "day": 1
+    },
+    "eventYear": 1990,
+    "yearLabel": "1990 年",
+    "title": "英法海底隧道贯通",
+    "summary": "1990 年 12 月 1 日，英法海底隧道两端施工队在海底贯通，工程取得决定性进展。隧道全长约五十公里，1994 年正式通车，首次以铁路把不列颠与欧洲大陆连成一体，是二十世纪大型工程的代表。",
+    "category": "technology",
+    "region": "world",
+    "origin": "欧洲·英法",
+    "dateKind": "exact",
+    "tags": [
+      "海底隧道",
+      "工程",
+      "铁路"
+    ],
+    "weight": 60,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
   },
   {
     "id": "he-1202-001",
-    "solar": { "month": 12, "day": 2 },
-    "eventYear": 1942,
-    "yearLabel": "1942 年",
-    "title": "人类首次实现核链式反应",
-    "summary": "1942 年 12 月 2 日，费米在芝加哥大学体育场看台下建造的反应堆达到临界，人类首次实现可控的核链式反应。这一实验证明了核能释放的可行性，既是核能时代的起点，也为此后的核技术与核安全议题埋下伏笔。",
-    "category": "science",
-    "tags": ["核能", "费米", "物理学"],
-    "weight": 95,
+    "solar": {
+      "month": 12,
+      "day": 2
+    },
+    "eventYear": 960,
+    "yearLabel": "960 年",
+    "title": "陈桥兵变北宋建立",
+    "summary": "960 年，赵匡胤在陈桥驿发动兵变，建立宋朝，定都开封。此后北宋逐步结束五代十国的分裂局面，重建中央集权，并在文官政治、科举取士与城市经济方面呈现出新的面貌。",
+    "category": "political",
+    "region": "china",
+    "origin": "中国·北宋",
+    "dateKind": "period",
+    "tags": [
+      "北宋",
+      "陈桥兵变",
+      "赵匡胤"
+    ],
+    "weight": 94,
     "source": "原创整理",
     "license": "self-authored",
-    "retrievedAt": "2026-11-18"
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1202-002",
+    "solar": {
+      "month": 12,
+      "day": 2
+    },
+    "eventYear": 1130,
+    "yearLabel": "1130 年",
+    "title": "理学集大成者朱熹诞生",
+    "summary": "1130 年，朱熹出生。他继承并发展二程学说，注释《四书》，构建起以「理」为核心的哲学体系。其学说在宋元以后成为科举与教育的官方依据，对东亚思想文化产生数百年影响。",
+    "category": "culture",
+    "region": "china",
+    "origin": "中国·南宋",
+    "dateKind": "period",
+    "tags": [
+      "朱熹",
+      "理学",
+      "四书"
+    ],
+    "weight": 91,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1202-003",
+    "solar": {
+      "month": 12,
+      "day": 2
+    },
+    "eventYear": 1971,
+    "yearLabel": "1971 年",
+    "title": "阿拉伯联合酋长国成立",
+    "summary": "1971 年 12 月 2 日，阿布扎比、迪拜等六个酋长国组成阿拉伯联合酋长国，次年哈伊马角加入。这个海湾联邦国家此后依托石油与转口贸易迅速崛起，成为阿拉伯世界现代化与区域合作的样本。",
+    "category": "political",
+    "region": "world",
+    "origin": "阿拉伯·海湾",
+    "dateKind": "exact",
+    "tags": [
+      "阿联酋",
+      "联邦",
+      "海湾"
+    ],
+    "weight": 52,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
   },
   {
     "id": "he-1203-001",
-    "solar": { "month": 12, "day": 3 },
-    "eventYear": 1967,
-    "yearLabel": "1967 年",
-    "title": "世界首例人体心脏移植手术",
-    "summary": "1967 年 12 月 3 日，南非外科医生巴纳德在开普敦完成世界首例人体心脏移植手术。手术本身成功，患者存活 18 天后因感染去世。它证明了心脏移植在技术上可行，推动器官移植走向规范化的医学实践。",
-    "category": "science",
-    "tags": ["医学", "器官移植", "心脏"],
-    "weight": 90,
-    "source": "原创整理",
-    "license": "self-authored",
-    "retrievedAt": "2026-11-18"
-  },
-  {
-    "id": "he-1204-001",
-    "solar": { "month": 12, "day": 4 },
-    "eventYear": 1982,
-    "yearLabel": "1982 年",
-    "title": "现行《中华人民共和国宪法》通过",
-    "summary": "1982 年 12 月 4 日，五届全国人大五次会议通过《中华人民共和国宪法》，即现行宪法。它以根本法形式确立国家的基本制度与公民权利义务，此后历经数次修正，成为国家治理与法治建设的制度基础。",
+    "solar": {
+      "month": 12,
+      "day": 3
+    },
+    "eventYear": 1368,
+    "yearLabel": "1368 年",
+    "title": "朱元璋称帝建立明朝",
+    "summary": "1368 年，朱元璋在应天称帝，国号大明，同年北伐攻克元大都，元朝统治结束。明朝重建汉族政权，整顿赋役、强化中央集权，并在此后近三百年间形成独特的制度与文化生活。",
     "category": "political",
-    "tags": ["宪法", "法治", "1982"],
-    "weight": 85,
-    "source": "原创整理",
-    "license": "self-authored",
-    "retrievedAt": "2026-11-18"
-  },
-  {
-    "id": "he-1205-001",
-    "solar": { "month": 12, "day": 5 },
-    "eventYear": 1933,
-    "yearLabel": "1933 年",
-    "title": "美国废除全国禁酒令",
-    "summary": "1933 年 12 月 5 日，随着第二十一修正案获得足够州批准，美国正式废除实行十余年的全国禁酒令。酒类的生产、销售与运输重新合法化，联邦与州之间的权力边界、税收结构与公共治理方式也随之调整。",
-    "category": "political",
-    "tags": ["禁酒令", "宪法修正案", "1933"],
-    "weight": 60,
-    "source": "原创整理",
-    "license": "self-authored",
-    "retrievedAt": "2026-11-18"
-  },
-  {
-    "id": "he-1206-001",
-    "solar": { "month": 12, "day": 6 },
-    "eventYear": 1865,
-    "yearLabel": "1865 年",
-    "title": "美国宪法第十三修正案批准",
-    "summary": "1865 年 12 月 6 日，美国宪法第十三修正案获得足够州批准生效，废除奴隶制与强制劳役。这一修正案把废奴成果写入根本法，成为美国宪政史上权利扩展的重要节点，也影响了此后各国关于人身自由的立法。",
-    "category": "political",
-    "tags": ["废奴", "宪法修正案", "1865"],
-    "weight": 75,
-    "source": "原创整理",
-    "license": "self-authored",
-    "retrievedAt": "2026-11-18"
-  },
-  {
-    "id": "he-1207-001",
-    "solar": { "month": 12, "day": 7 },
-    "eventYear": 1972,
-    "yearLabel": "1972 年",
-    "title": "阿波罗17号发射升空",
-    "summary": "1972 年 12 月 7 日，阿波罗17号搭载三名航天员发射升空，执行人类最后一次载人登月任务。任务期间拍下的“蓝色弹珠”照片让地球全貌第一次清晰进入公众视野，成为环境意识觉醒的标志性影像。",
-    "category": "science",
-    "tags": ["阿波罗", "登月", "航天"],
-    "weight": 90,
-    "source": "原创整理",
-    "license": "self-authored",
-    "retrievedAt": "2026-11-18"
-  },
-  {
-    "id": "he-1208-001",
-    "solar": { "month": 12, "day": 8 },
-    "eventYear": 1987,
-    "yearLabel": "1987 年",
-    "title": "《中导条约》在华盛顿签署",
-    "summary": "1987 年 12 月 8 日，美苏两国首脑在华盛顿签署《消除两国中程和中短程导弹条约》，约定销毁一整类陆基导弹。这是冷战中第一个真正削减核武库的协议，为国家间军备控制提供了可核查的制度模板。",
-    "category": "political",
-    "tags": ["军备控制", "冷战", "条约"],
-    "weight": 75,
-    "source": "原创整理",
-    "license": "self-authored",
-    "retrievedAt": "2026-11-18"
-  },
-  {
-    "id": "he-1209-001",
-    "solar": { "month": 12, "day": 9 },
-    "eventYear": 1968,
-    "yearLabel": "1968 年",
-    "title": "“所有演示之母”改变人机交互",
-    "summary": "1968 年 12 月 9 日，恩格尔巴特在旧金山一场会议上演示了鼠标、超文本、实时协作与图形界面等设想，这场演示后来被称为“所有演示之母”。它把计算机从批处理工具引向个人交互，深刻塑造了此后半个世纪的信息技术。",
-    "category": "technology",
-    "tags": ["人机交互", "鼠标", "计算机"],
-    "weight": 90,
-    "source": "原创整理",
-    "license": "self-authored",
-    "retrievedAt": "2026-11-18"
-  },
-  {
-    "id": "he-1210-001",
-    "solar": { "month": 12, "day": 10 },
-    "eventYear": 1901,
-    "yearLabel": "1901 年",
-    "title": "首届诺贝尔奖颁发",
-    "summary": "1901 年 12 月 10 日，诺贝尔逝世五周年当天，首届诺贝尔奖在斯德哥尔摩和奥斯陆颁发，伦琴获物理学奖、范托夫获化学奖。此后每年 12 月 10 日颁奖成为惯例，诺贝尔奖逐渐成为国际科学文化成就的重要标杆。",
-    "category": "culture",
-    "tags": ["诺贝尔奖", "科学", "1901"],
-    "weight": 85,
-    "source": "原创整理",
-    "license": "self-authored",
-    "retrievedAt": "2026-11-18"
-  },
-  {
-    "id": "he-1211-001",
-    "solar": { "month": 12, "day": 11 },
-    "eventYear": 2001,
-    "yearLabel": "2001 年",
-    "title": "中国正式加入世界贸易组织",
-    "summary": "2001 年 12 月 11 日，中国正式成为世界贸易组织第 143 个成员，此前长达十五年的谈判告一段落。加入世贸推动中国关税、贸易规则与市场准入进一步与国际接轨，也深刻改变了此后二十年的全球产业链格局。",
-    "category": "economy",
-    "tags": ["世界贸易组织", "对外开放", "2001"],
-    "weight": 85,
-    "source": "原创整理",
-    "license": "self-authored",
-    "retrievedAt": "2026-11-18"
-  },
-  {
-    "id": "he-1212-001",
-    "solar": { "month": 12, "day": 12 },
-    "eventYear": 1901,
-    "yearLabel": "1901 年",
-    "title": "首次跨大西洋无线电通信成功",
-    "summary": "1901 年 12 月 12 日，马可尼在加拿大纽芬兰接收到来自英国康沃尔的无线电信号，人类首次实现跨大西洋的无线通信。它证明无线电波可以跨越地球曲率远距离传播，为广播、航海通信与全球即时通讯奠定基础。",
-    "category": "technology",
-    "tags": ["无线电", "马可尼", "通信"],
-    "weight": 90,
-    "source": "原创整理",
-    "license": "self-authored",
-    "retrievedAt": "2026-11-18"
-  },
-  {
-    "id": "he-1213-001",
-    "solar": { "month": 12, "day": 13 },
-    "eventYear": 1642,
-    "yearLabel": "1642 年",
-    "title": "塔斯曼望见新西兰海岸",
-    "summary": "1642 年 12 月 13 日，荷兰航海家塔斯曼的船队望见今新西兰南岛的海岸，成为有记录以来首批抵达此地的欧洲人。这次航行补上了世界地图上南太平洋的一片空白，欧洲与波利尼西亚两大航海传统由此开始有记录的相遇。",
-    "category": "society",
-    "tags": ["大航海", "新西兰", "塔斯曼"],
-    "weight": 60,
-    "source": "原创整理",
-    "license": "self-authored",
-    "retrievedAt": "2026-11-18"
-  },
-  {
-    "id": "he-1214-001",
-    "solar": { "month": 12, "day": 14 },
-    "eventYear": 1994,
-    "yearLabel": "1994 年",
-    "title": "长江三峡工程正式开工",
-    "summary": "1994 年 12 月 14 日，长江三峡水利枢纽工程在湖北宜昌正式开工。这项集防洪、发电与航运于一体的大型工程历时十余年建设，是二十世纪规模最大的水利工程之一，也是中国现代工程能力的一次集中检验。",
-    "category": "technology",
-    "tags": ["三峡", "水利", "工程"],
-    "weight": 75,
-    "source": "原创整理",
-    "license": "self-authored",
-    "retrievedAt": "2026-11-18"
-  },
-  {
-    "id": "he-1215-001",
-    "solar": { "month": 12, "day": 15 },
-    "eventYear": 1970,
-    "yearLabel": "1970 年",
-    "title": "金星7号首次在另一行星软着陆",
-    "summary": "1970 年 12 月 15 日，苏联金星7号探测器穿过金星大气并软着陆，在约 470℃ 量级的高温地表坚持传回信号二十余分钟。这是人类探测器首次在另一颗行星上成功软着陆并传回数据，开启了行星表面探测的新阶段。",
-    "category": "science",
-    "tags": ["金星", "深空探测", "苏联"],
-    "weight": 80,
-    "source": "原创整理",
-    "license": "self-authored",
-    "retrievedAt": "2026-11-18"
-  },
-  {
-    "id": "he-1216-001",
-    "solar": { "month": 12, "day": 16 },
-    "eventYear": 1773,
-    "yearLabel": "1773 年",
-    "title": "波士顿倾茶事件发生",
-    "summary": "1773 年 12 月 16 日，北美殖民者登上停泊在波士顿港的英国茶船，将三百余箱茶叶倒入海中，抗议东印度公司的茶叶专营与相关税收。这一事件激化了殖民地与英国的矛盾，成为北美独立运动的重要导火索。",
-    "category": "political",
-    "tags": ["北美殖民地", "抗议", "1773"],
-    "weight": 70,
-    "source": "原创整理",
-    "license": "self-authored",
-    "retrievedAt": "2026-11-18"
-  },
-  {
-    "id": "he-1217-001",
-    "solar": { "month": 12, "day": 17 },
-    "eventYear": 1903,
-    "yearLabel": "1903 年",
-    "title": "莱特兄弟完成首次动力飞行",
-    "summary": "1903 年 12 月 17 日，莱特兄弟在北卡罗来纳州基蒂霍克附近的沙丘上，驾驶“飞行者一号”完成人类首次有动力的持续可控飞行，首飞持续约 12 秒、飞行 36 米。它为现代航空业奠定了起点，也改变了人类对距离与速度的想象。",
-    "category": "technology",
-    "tags": ["航空", "莱特兄弟", "1903"],
+    "region": "china",
+    "origin": "中国·明",
+    "dateKind": "period",
+    "tags": [
+      "明朝",
+      "朱元璋",
+      "洪武"
+    ],
     "weight": 95,
     "source": "原创整理",
     "license": "self-authored",
-    "retrievedAt": "2026-11-18"
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1203-002",
+    "solar": {
+      "month": 12,
+      "day": 3
+    },
+    "eventYear": 1420,
+    "yearLabel": "1420 年",
+    "title": "明北京紫禁城落成",
+    "summary": "1420 年，明成祖迁都北京，紫禁城建成。宫城以中轴对称布局，前朝后寝、左祖右社，木构建筑与琉璃瓦顶相映，是中国古代宫殿建筑的最高成就，1987 年作为明清皇宫列入世界遗产。",
+    "category": "culture",
+    "region": "china",
+    "origin": "中国·明",
+    "dateKind": "period",
+    "tags": [
+      "紫禁城",
+      "宫殿",
+      "北京"
+    ],
+    "weight": 94,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1203-003",
+    "solar": {
+      "month": 12,
+      "day": 3
+    },
+    "eventYear": 1967,
+    "yearLabel": "1967 年",
+    "title": "首例人体心脏移植",
+    "summary": "1967 年 12 月 3 日，南非开普敦的巴纳德医生团队完成世界首例人体心脏移植手术，患者存活十八天。这一手术开启器官移植的新阶段，也引发关于医学伦理与器官来源的持续讨论。",
+    "category": "science",
+    "region": "world",
+    "origin": "非洲·南非",
+    "dateKind": "exact",
+    "tags": [
+      "心脏移植",
+      "医学",
+      "南非"
+    ],
+    "weight": 63,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1204-001",
+    "solar": {
+      "month": 12,
+      "day": 4
+    },
+    "eventYear": -551,
+    "yearLabel": "公元前 551 年",
+    "title": "孔子诞生于鲁国陬邑",
+    "summary": "公元前 551 年，孔子诞生于鲁国陬邑。他周游列国、授徒讲学，整理《诗》《书》，以「仁」与「礼」为核心提出修身治国之道。其言行由弟子辑为《论语》，成为中华文明最重要的思想源头之一。",
+    "category": "culture",
+    "region": "china",
+    "origin": "中国·春秋",
+    "dateKind": "period",
+    "tags": [
+      "孔子",
+      "儒家",
+      "论语"
+    ],
+    "weight": 100,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1204-002",
+    "solar": {
+      "month": 12,
+      "day": 4
+    },
+    "eventYear": 1982,
+    "yearLabel": "1982 年",
+    "title": "现行宪法通过施行",
+    "summary": "1982 年 12 月 4 日，第五届全国人民代表大会第五次会议通过《中华人民共和国宪法》，即现行宪法。它确立国家的根本制度与公民基本权利，此后经多次修正不断完善，是国家治理的根本法律依据。",
+    "category": "political",
+    "region": "china",
+    "origin": "中国·当代",
+    "dateKind": "exact",
+    "tags": [
+      "宪法",
+      "法治",
+      "1982"
+    ],
+    "weight": 87,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1204-003",
+    "solar": {
+      "month": 12,
+      "day": 4
+    },
+    "eventYear": 1998,
+    "yearLabel": "1998 年",
+    "title": "国际空间站开始组装",
+    "summary": "1998 年 12 月 4 日，国际空间站首个美国舱段「团结号」由航天飞机送入轨道，随后与先前发射的「曙光号」对接，空间站组装就此展开。这一多国合作工程成为人类长期在轨驻留与科学实验的平台。",
+    "category": "science",
+    "region": "world",
+    "origin": "国际·近地轨道",
+    "dateKind": "exact",
+    "tags": [
+      "国际空间站",
+      "航天",
+      "合作"
+    ],
+    "weight": 59,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1205-001",
+    "solar": {
+      "month": 12,
+      "day": 5
+    },
+    "eventYear": -479,
+    "yearLabel": "公元前 479 年",
+    "title": "孔子卒于鲁国曲阜",
+    "summary": "公元前 479 年，孔子在鲁国去世，享年七十三岁。弟子为其守丧，并整理其言论成书。他所开创的儒家学派经后世发展，成为中国传统社会政治伦理与教育制度的思想基础。",
+    "category": "culture",
+    "region": "china",
+    "origin": "中国·春秋",
+    "dateKind": "period",
+    "tags": [
+      "孔子",
+      "儒家",
+      "春秋"
+    ],
+    "weight": 97,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1205-002",
+    "solar": {
+      "month": 12,
+      "day": 5
+    },
+    "eventYear": -356,
+    "yearLabel": "公元前 356 年",
+    "title": "商鞅主持秦国变法",
+    "summary": "公元前 356 年，秦孝公任用商鞅推行变法，废井田、开阡陌，奖励耕战，推行县制与连坐之法。变法使秦国迅速富强，为日后统一六国奠定制度基础，也深刻影响了此后两千年的中央集权体制。",
+    "category": "political",
+    "region": "china",
+    "origin": "中国·战国",
+    "dateKind": "period",
+    "tags": [
+      "商鞅变法",
+      "秦国",
+      "县制"
+    ],
+    "weight": 95,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1205-003",
+    "solar": {
+      "month": 12,
+      "day": 5
+    },
+    "eventYear": 1791,
+    "yearLabel": "1791 年",
+    "title": "音乐家莫扎特逝世",
+    "summary": "1791 年 12 月 5 日，奥地利作曲家莫扎特在维也纳逝世，年仅三十五岁，留下《费加罗的婚礼》《魔笛》与未完成的《安魂曲》等作品。他的创作确立了古典主义音乐的成熟形态，至今仍是常演曲目。",
+    "category": "culture",
+    "region": "world",
+    "origin": "欧洲·奥地利",
+    "dateKind": "exact",
+    "tags": [
+      "莫扎特",
+      "古典音乐",
+      "维也纳"
+    ],
+    "weight": 62,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1206-001",
+    "solar": {
+      "month": 12,
+      "day": 6
+    },
+    "eventYear": -209,
+    "yearLabel": "公元前 209 年",
+    "title": "大泽乡陈胜吴广起义",
+    "summary": "公元前 209 年，陈胜、吴广率戍卒在大泽乡起义，喊出「王侯将相宁有种乎」，揭开秦末农民战争的序幕。起义虽很快失败，却动摇了秦朝统治，也为此后历代对苛政的反思留下深刻印记。",
+    "category": "political",
+    "region": "china",
+    "origin": "中国·秦",
+    "dateKind": "period",
+    "tags": [
+      "大泽乡",
+      "陈胜吴广",
+      "起义"
+    ],
+    "weight": 94,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1206-002",
+    "solar": {
+      "month": 12,
+      "day": 6
+    },
+    "eventYear": -202,
+    "yearLabel": "公元前 202 年",
+    "title": "刘邦称帝建立汉朝",
+    "summary": "公元前 202 年，刘邦在垓下之战后称帝，定都长安，西汉建立。汉初以黄老之术休养生息，轻徭薄赋，社会经济逐步恢复，此后「汉」逐渐成为中原王朝与华夏族群的共同称谓。",
+    "category": "political",
+    "region": "china",
+    "origin": "中国·西汉",
+    "dateKind": "period",
+    "tags": [
+      "西汉",
+      "刘邦",
+      "休养生息"
+    ],
+    "weight": 95,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1206-003",
+    "solar": {
+      "month": 12,
+      "day": 6
+    },
+    "eventYear": 1917,
+    "yearLabel": "1917 年",
+    "title": "芬兰议会宣布独立",
+    "summary": "1917 年 12 月 6 日，芬兰议会通过独立宣言，宣布脱离俄国独立。此后芬兰在共和制度下发展教育与工业，并以「千湖之国」的自然环境与设计传统闻名，是北欧现代国家建设的典型案例。",
+    "category": "political",
+    "region": "world",
+    "origin": "欧洲·芬兰",
+    "dateKind": "exact",
+    "tags": [
+      "芬兰",
+      "独立",
+      "北欧"
+    ],
+    "weight": 53,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1207-001",
+    "solar": {
+      "month": 12,
+      "day": 7
+    },
+    "eventYear": -124,
+    "yearLabel": "公元前 124 年",
+    "title": "汉武帝设太学授经",
+    "summary": "公元前 124 年，汉武帝采纳董仲舒等建议设立太学，置五经博士，以儒家经典培养官吏后备。太学成为国家最高学府，儒学由此成为官方意识形态，深刻塑造了中国古代的教育与选官传统。",
+    "category": "political",
+    "region": "china",
+    "origin": "中国·西汉",
+    "dateKind": "period",
+    "tags": [
+      "太学",
+      "儒学",
+      "汉武帝"
+    ],
+    "weight": 96,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1207-002",
+    "solar": {
+      "month": 12,
+      "day": 7
+    },
+    "eventYear": -214,
+    "yearLabel": "公元前 214 年",
+    "title": "秦开凿灵渠通湘漓",
+    "summary": "公元前 214 年，秦始皇命人在今广西兴安开凿灵渠，沟通湘江与漓江，连通长江与珠江两大水系。灵渠为秦军南征转运粮饷而建，兼具灌溉与航运之利，是古代水利工程的杰作之一。",
+    "category": "technology",
+    "region": "china",
+    "origin": "中国·秦",
+    "dateKind": "period",
+    "tags": [
+      "灵渠",
+      "水利",
+      "秦朝"
+    ],
+    "weight": 93,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1207-003",
+    "solar": {
+      "month": 12,
+      "day": 7
+    },
+    "eventYear": 1972,
+    "yearLabel": "1972 年",
+    "title": "阿波罗17号发射",
+    "summary": "1972 年 12 月 7 日，阿波罗 17 号载着三名宇航员飞向月球，这是人类迄今最后一次载人登月任务。任务带回了著名的「蓝色弹珠」地球照片与大量月壤样本，为行星科学研究留下珍贵资料。",
+    "category": "science",
+    "region": "world",
+    "origin": "北美·美国",
+    "dateKind": "exact",
+    "tags": [
+      "阿波罗",
+      "登月",
+      "航天"
+    ],
+    "weight": 64,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1208-001",
+    "solar": {
+      "month": 12,
+      "day": 8
+    },
+    "eventYear": 280,
+    "yearLabel": "280 年",
+    "title": "西晋灭吴统一全国",
+    "summary": "280 年，西晋大军攻破建业，吴国灭亡，自东汉末年以来的分裂局面暂告结束。西晋短暂统一后推行占田制，社会经济一度恢复，但宗室分封与门阀政治也为后来的长期动荡埋下隐患。",
+    "category": "political",
+    "region": "china",
+    "origin": "中国·西晋",
+    "dateKind": "period",
+    "tags": [
+      "西晋",
+      "统一",
+      "占田制"
+    ],
+    "weight": 90,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1208-002",
+    "solar": {
+      "month": 12,
+      "day": 8
+    },
+    "eventYear": 263,
+    "yearLabel": "263 年",
+    "title": "刘徽注《九章算术》",
+    "summary": "263 年，魏晋数学家刘徽为《九章算术》作注，系统给出算法证明，并首创「割圆术」，用圆内接正多边形逼近圆周率，算得约 3.1416。他的工作把中国古代数学从算法经验推进到理论论证。",
+    "category": "science",
+    "region": "china",
+    "origin": "中国·三国·魏",
+    "dateKind": "period",
+    "tags": [
+      "九章算术",
+      "刘徽",
+      "割圆术"
+    ],
+    "weight": 94,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1208-003",
+    "solar": {
+      "month": 12,
+      "day": 8
+    },
+    "eventYear": 1991,
+    "yearLabel": "1991 年",
+    "title": "别洛韦日协议签署",
+    "summary": "1991 年 12 月 8 日，俄罗斯、白俄罗斯、乌克兰三国领导人在别洛韦日森林签署协议，宣布苏联不再存在，并成立独立国家联合体。这一事件终结了持续近七十年的冷战两极格局。",
+    "category": "political",
+    "region": "world",
+    "origin": "欧洲·东欧",
+    "dateKind": "exact",
+    "tags": [
+      "苏联解体",
+      "独联体",
+      "1991"
+    ],
+    "weight": 54,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1209-001",
+    "solar": {
+      "month": 12,
+      "day": 9
+    },
+    "eventYear": 366,
+    "yearLabel": "366 年",
+    "title": "敦煌莫高窟始开凿",
+    "summary": "366 年，僧人乐僔在敦煌鸣沙山东麓开凿洞窟、造像修行，莫高窟由此发端。此后历经北凉至元代不断营建，留下大量壁画与彩塑，成为世界上规模最大的佛教艺术宝库，1987 年列入世界遗产。",
+    "category": "culture",
+    "region": "china",
+    "origin": "中国·十六国",
+    "dateKind": "period",
+    "tags": [
+      "莫高窟",
+      "敦煌",
+      "壁画"
+    ],
+    "weight": 94,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1209-002",
+    "solar": {
+      "month": 12,
+      "day": 9
+    },
+    "eventYear": 1935,
+    "yearLabel": "1935 年",
+    "title": "一二·九学生运动",
+    "summary": "1935 年 12 月 9 日，北平学生举行抗日救国请愿游行，反对华北自治，要求停止内战、一致对外。运动迅速波及全国，推动抗日救亡运动走向高潮，也成为中国近代青年学生参与公共事务的重要记忆。",
+    "category": "political",
+    "region": "china",
+    "origin": "中国·民国",
+    "dateKind": "exact",
+    "tags": [
+      "一二九运动",
+      "学生",
+      "抗日救亡"
+    ],
+    "weight": 86,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1209-003",
+    "solar": {
+      "month": 12,
+      "day": 9
+    },
+    "eventYear": 1961,
+    "yearLabel": "1961 年",
+    "title": "坦噶尼喀宣布独立",
+    "summary": "1961 年 12 月 9 日，坦噶尼喀脱离英国托管宣告独立，尼雷尔出任总理，三年后与桑给巴尔合并组成坦桑尼亚。它是二十世纪六十年代非洲非殖民化浪潮中的一环，也是东非现代国家建设的重要一步。",
+    "category": "political",
+    "region": "world",
+    "origin": "非洲·坦桑尼亚",
+    "dateKind": "exact",
+    "tags": [
+      "坦噶尼喀",
+      "非殖民化",
+      "东非"
+    ],
+    "weight": 52,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1210-001",
+    "solar": {
+      "month": 12,
+      "day": 10
+    },
+    "eventYear": 399,
+    "yearLabel": "399 年",
+    "title": "法显西行求取律藏",
+    "summary": "399 年，东晋高僧法显自长安出发西行求法，历时十余年，经西域、天竺，由海路归国。他带回多部律藏并译出，所著《佛国记》记录沿途山川风物与社会状况，是研究古代中亚南亚的重要文献。",
+    "category": "culture",
+    "region": "china",
+    "origin": "中国·东晋",
+    "dateKind": "period",
+    "tags": [
+      "法显",
+      "佛国记",
+      "求法"
+    ],
+    "weight": 92,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1210-002",
+    "solar": {
+      "month": 12,
+      "day": 10
+    },
+    "eventYear": 724,
+    "yearLabel": "724 年",
+    "title": "一行主持大地测量",
+    "summary": "724 年，唐代僧一行奉诏主持全国性的天文大地测量，在十余处观测点测得北极高度与日影长度，据此推算子午线一度的长度。这次测量是世界最早的子午线实测之一，为《大衍历》的编制提供数据基础。",
+    "category": "science",
+    "region": "china",
+    "origin": "中国·唐",
+    "dateKind": "period",
+    "tags": [
+      "一行",
+      "子午线",
+      "天文测量"
+    ],
+    "weight": 94,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1210-003",
+    "solar": {
+      "month": 12,
+      "day": 10
+    },
+    "eventYear": 1941,
+    "yearLabel": "1941 年",
+    "title": "威尔士亲王号沉没",
+    "summary": "1941 年 12 月 10 日，英国「威尔士亲王号」与「反击号」在马来亚海域被日本航空兵击沉。这是航行中的主力战列舰首次被飞机击沉，标志海战进入以航空兵为主导的时代，也改变了太平洋战争走向。",
+    "category": "military",
+    "region": "world",
+    "origin": "东南亚·马来亚",
+    "dateKind": "exact",
+    "tags": [
+      "海战",
+      "航空兵",
+      "二战"
+    ],
+    "weight": 56,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1211-001",
+    "solar": {
+      "month": 12,
+      "day": 11
+    },
+    "eventYear": 753,
+    "yearLabel": "753 年",
+    "title": "鉴真东渡到达日本",
+    "summary": "753 年，唐代高僧鉴真历经六次东渡终抵日本，次年受戒于奈良东大寺。他带去佛经、医药、建筑与雕塑技艺，主持修建唐招提寺，成为中日文化交流史上最具代表性的使者。",
+    "category": "culture",
+    "region": "china",
+    "origin": "中国·唐",
+    "dateKind": "period",
+    "tags": [
+      "鉴真",
+      "东渡",
+      "中日交流"
+    ],
+    "weight": 95,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1211-002",
+    "solar": {
+      "month": 12,
+      "day": 11
+    },
+    "eventYear": 2001,
+    "yearLabel": "2001 年",
+    "title": "中国正式加入世贸组织",
+    "summary": "2001 年 12 月 11 日，中国正式成为世界贸易组织成员。历经十五年谈判，中国由此全面融入多边贸易体系，制造业与出口迅速增长，也给全球产业分工与贸易规则带来深远变化。",
+    "category": "economy",
+    "region": "china",
+    "origin": "中国·当代",
+    "dateKind": "exact",
+    "tags": [
+      "世界贸易组织",
+      "入世",
+      "2001"
+    ],
+    "weight": 88,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1211-003",
+    "solar": {
+      "month": 12,
+      "day": 11
+    },
+    "eventYear": 1997,
+    "yearLabel": "1997 年",
+    "title": "《京都议定书》通过",
+    "summary": "1997 年 12 月 11 日，联合国气候变化框架公约缔约方会议在日本京都通过《京都议定书》，首次为发达国家设定有约束力的温室气体减排目标。它是全球气候治理进程中的重要一步。",
+    "category": "society",
+    "region": "world",
+    "origin": "亚洲·日本",
+    "dateKind": "exact",
+    "tags": [
+      "京都议定书",
+      "气候",
+      "环境"
+    ],
+    "weight": 58,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1212-001",
+    "solar": {
+      "month": 12,
+      "day": 12
+    },
+    "eventYear": 755,
+    "yearLabel": "755 年",
+    "title": "安禄山起兵于范阳",
+    "summary": "755 年，安禄山以讨伐杨国忠为名在范阳起兵，安史之乱爆发。战乱持续八年，北方经济遭到严重破坏，唐朝由盛转衰，此后的藩镇割据与财政改革深刻改变了中国的政治与社会结构。",
+    "category": "military",
+    "region": "china",
+    "origin": "中国·唐",
+    "dateKind": "period",
+    "tags": [
+      "安史之乱",
+      "藩镇",
+      "唐朝"
+    ],
+    "weight": 93,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1212-002",
+    "solar": {
+      "month": 12,
+      "day": 12
+    },
+    "eventYear": 1936,
+    "yearLabel": "1936 年",
+    "title": "张学良杨虎城兵谏",
+    "summary": "1936 年 12 月 12 日，张学良、杨虎城在西安扣押蒋介石，要求停止内战、一致抗日，史称西安事变。经多方斡旋，事变和平解决，抗日民族统一战线由此初步形成，成为中国时局转换的关键节点。",
+    "category": "political",
+    "region": "china",
+    "origin": "中国·民国",
+    "dateKind": "exact",
+    "tags": [
+      "西安事变",
+      "抗日",
+      "1936"
+    ],
+    "weight": 87,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1212-003",
+    "solar": {
+      "month": 12,
+      "day": 12
+    },
+    "eventYear": 1901,
+    "yearLabel": "1901 年",
+    "title": "跨大西洋无线电成功",
+    "summary": "1901 年 12 月 12 日，马可尼在加拿大纽芬兰接收到来自英国康沃尔的无线电信号，首次实现跨大西洋无线电通信。这项突破证明无线电可跨越海洋传播，为此后广播与全球通信奠定基础。",
+    "category": "technology",
+    "region": "world",
+    "origin": "欧洲·意大利",
+    "dateKind": "exact",
+    "tags": [
+      "无线电",
+      "马可尼",
+      "通信"
+    ],
+    "weight": 61,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1213-001",
+    "solar": {
+      "month": 12,
+      "day": 13
+    },
+    "eventYear": 780,
+    "yearLabel": "780 年",
+    "title": "唐德宗推行两税法",
+    "summary": "780 年，唐德宗采纳杨炎建议推行两税法，按户等与田亩征税，分夏秋两次征收，改变此前以人丁为主的租庸调制。这一改革扩大税基、简化税制，成为此后历代赋役制度的重要参照。",
+    "category": "economy",
+    "region": "china",
+    "origin": "中国·唐",
+    "dateKind": "period",
+    "tags": [
+      "两税法",
+      "赋役",
+      "杨炎"
+    ],
+    "weight": 91,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1213-002",
+    "solar": {
+      "month": 12,
+      "day": 13
+    },
+    "eventYear": 1937,
+    "yearLabel": "1937 年",
+    "title": "南京大屠杀惨案发生",
+    "summary": "1937 年 12 月 13 日，侵华日军攻占南京后开始大规模屠杀与暴行，三十余万同胞遇难。这是第二次世界大战期间最严重的暴行之一；2014 年起，12 月 13 日被设立为南京大屠杀死难者国家公祭日。",
+    "category": "other",
+    "region": "china",
+    "origin": "中国·民国",
+    "dateKind": "exact",
+    "tags": [
+      "南京大屠杀",
+      "国家公祭日",
+      "1937"
+    ],
+    "weight": 89,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1213-003",
+    "solar": {
+      "month": 12,
+      "day": 13
+    },
+    "eventYear": 1642,
+    "yearLabel": "1642 年",
+    "title": "塔斯曼望见新西兰",
+    "summary": "1642 年 12 月 13 日，荷兰航海家塔斯曼的船队望见今新西兰南岛海岸，成为首位记录抵达这片海域的欧洲人。这次航行还先后抵达塔斯马尼亚与汤加，为欧洲人绘制南太平洋海图提供了关键信息。",
+    "category": "society",
+    "region": "world",
+    "origin": "大洋洲·新西兰",
+    "dateKind": "exact",
+    "tags": [
+      "塔斯曼",
+      "航海",
+      "新西兰"
+    ],
+    "weight": 55,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1214-001",
+    "solar": {
+      "month": 12,
+      "day": 14
+    },
+    "eventYear": 780,
+    "yearLabel": "780 年",
+    "title": "陆羽《茶经》成书",
+    "summary": "780 年，陆羽所著《茶经》成书。全书分十篇，记述茶的起源、采制、器具、煮饮与产地，是中国乃至世界第一部茶学专著。它把饮茶从日常习惯提升为有章法的文化，影响延续至今。",
+    "category": "culture",
+    "region": "china",
+    "origin": "中国·唐",
+    "dateKind": "period",
+    "tags": [
+      "茶经",
+      "陆羽",
+      "茶文化"
+    ],
+    "weight": 90,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1214-002",
+    "solar": {
+      "month": 12,
+      "day": 14
+    },
+    "eventYear": 1994,
+    "yearLabel": "1994 年",
+    "title": "长江三峡工程开工",
+    "summary": "1994 年 12 月 14 日，长江三峡水利枢纽工程正式开工。工程集防洪、发电、航运于一体，建成后成为世界上规模最大的水电站之一，也伴随着移民安置与生态保护的长期讨论。",
+    "category": "technology",
+    "region": "china",
+    "origin": "中国·当代",
+    "dateKind": "exact",
+    "tags": [
+      "三峡工程",
+      "水电",
+      "长江"
+    ],
+    "weight": 82,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1214-003",
+    "solar": {
+      "month": 12,
+      "day": 14
+    },
+    "eventYear": 1900,
+    "yearLabel": "1900 年",
+    "title": "普朗克提出量子假说",
+    "summary": "1900 年 12 月 14 日，德国物理学家普朗克在柏林物理学会报告能量子假说，提出能量以离散的「量子」形式发射与吸收。这一假设解决了黑体辐射难题，也标志着量子理论的开端，重塑了二十世纪物理学。",
+    "category": "science",
+    "region": "world",
+    "origin": "欧洲·德国",
+    "dateKind": "exact",
+    "tags": [
+      "量子论",
+      "普朗克",
+      "物理学"
+    ],
+    "weight": 64,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1215-001",
+    "solar": {
+      "month": 12,
+      "day": 15
+    },
+    "eventYear": 727,
+    "yearLabel": "727 年",
+    "title": "一行编成《大衍历》",
+    "summary": "727 年，唐代僧一行编成《大衍历》。历法吸收印度天文知识并改进计算方法，对日食、月食与五星运动的推算更为精密，此后为历代历法所参照，也随遣唐使传入日本。",
+    "category": "science",
+    "region": "china",
+    "origin": "中国·唐",
+    "dateKind": "period",
+    "tags": [
+      "大衍历",
+      "一行",
+      "历法"
+    ],
+    "weight": 91,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1215-002",
+    "solar": {
+      "month": 12,
+      "day": 15
+    },
+    "eventYear": 1991,
+    "yearLabel": "1991 年",
+    "title": "秦山核电站并网发电",
+    "summary": "1991 年 12 月 15 日，中国大陆第一座自行设计、建造的核电站——秦山核电站首次并网发电，1994 年投入商业运行。它标志中国成为少数掌握核电自主技术的国家，为后续核电建设积累经验。",
+    "category": "technology",
+    "region": "china",
+    "origin": "中国·当代",
+    "dateKind": "exact",
+    "tags": [
+      "核电",
+      "秦山",
+      "1991"
+    ],
+    "weight": 84,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1215-003",
+    "solar": {
+      "month": 12,
+      "day": 15
+    },
+    "eventYear": 1970,
+    "yearLabel": "1970 年",
+    "title": "金星7号登陆金星",
+    "summary": "1970 年 12 月 15 日，苏联「金星 7 号」探测器在金星表面软着陆，并传回约 23 分钟的数据。这是人类探测器首次在另一颗行星表面成功着陆并发回信息，为行星探测揭开新的一页。",
+    "category": "science",
+    "region": "world",
+    "origin": "欧洲·苏联",
+    "dateKind": "exact",
+    "tags": [
+      "金星",
+      "行星探测",
+      "苏联"
+    ],
+    "weight": 60,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1216-001",
+    "solar": {
+      "month": 12,
+      "day": 16
+    },
+    "eventYear": 1044,
+    "yearLabel": "1044 年",
+    "title": "《武经总要》记火药方",
+    "summary": "1044 年，北宋曾公亮等编成《武经总要》，其中记载了世界上现存最早的火药配方与火药武器制法。火药的发明与运用改变了战争形态，此后经阿拉伯传入欧洲，对世界历史进程产生深远影响。",
+    "category": "technology",
+    "region": "china",
+    "origin": "中国·北宋",
+    "dateKind": "period",
+    "tags": [
+      "火药",
+      "四大发明",
+      "武经总要"
+    ],
+    "weight": 95,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1216-002",
+    "solar": {
+      "month": 12,
+      "day": 16
+    },
+    "eventYear": 1978,
+    "yearLabel": "1978 年",
+    "title": "中美发表建交公报",
+    "summary": "1978 年 12 月 16 日，中美两国发表建交联合公报，宣布自 1979 年 1 月 1 日起互相承认并建立外交关系。这一决定结束了两国近三十年的隔绝状态，也为此后中国的对外开放创造了重要外部条件。",
+    "category": "political",
+    "region": "china",
+    "origin": "中国·当代",
+    "dateKind": "exact",
+    "tags": [
+      "中美建交",
+      "1978",
+      "外交"
+    ],
+    "weight": 87,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1216-003",
+    "solar": {
+      "month": 12,
+      "day": 16
+    },
+    "eventYear": 1631,
+    "yearLabel": "1631 年",
+    "title": "维苏威火山大爆发",
+    "summary": "1631 年 12 月 16 日，意大利维苏威火山剧烈喷发，火山灰与泥石流摧毁多座城镇，造成数千人死亡。这次喷发是火山学与灾害应对史上的重要事件，也促使欧洲学者开始系统记录与观察火山活动。",
+    "category": "disaster",
+    "region": "world",
+    "origin": "欧洲·意大利",
+    "dateKind": "exact",
+    "tags": [
+      "维苏威",
+      "火山",
+      "灾害"
+    ],
+    "weight": 54,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1217-001",
+    "solar": {
+      "month": 12,
+      "day": 17
+    },
+    "eventYear": 1578,
+    "yearLabel": "1578 年",
+    "title": "李时珍《本草纲目》成书",
+    "summary": "1578 年，李时珍历时二十七年编成《本草纲目》，收录药物一千八百余种，附方万余首，按部类系统整理药性、主治与产地。全书 1596 年刊行后流传海内外，被誉为中国古代药物学的集大成之作。",
+    "category": "science",
+    "region": "china",
+    "origin": "中国·明",
+    "dateKind": "period",
+    "tags": [
+      "本草纲目",
+      "李时珍",
+      "药物学"
+    ],
+    "weight": 97,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1217-002",
+    "solar": {
+      "month": 12,
+      "day": 17
+    },
+    "eventYear": 1790,
+    "yearLabel": "1790 年",
+    "title": "徽班进京与京剧形成",
+    "summary": "1790 年，为庆贺乾隆帝八十大寿，三庆徽班进京献艺，此后四喜、和春、春台等徽班相继入京。徽调与汉调、昆曲、秦腔等交融，逐渐孕育出京剧，成为影响最大的戏曲剧种之一。",
+    "category": "culture",
+    "region": "china",
+    "origin": "中国·清",
+    "dateKind": "period",
+    "tags": [
+      "徽班进京",
+      "京剧",
+      "戏曲"
+    ],
+    "weight": 90,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
+  },
+  {
+    "id": "he-1217-003",
+    "solar": {
+      "month": 12,
+      "day": 17
+    },
+    "eventYear": 1903,
+    "yearLabel": "1903 年",
+    "title": "莱特兄弟首次动力飞行",
+    "summary": "1903 年 12 月 17 日，莱特兄弟在美国北卡罗来纳州基蒂霍克驾驶「飞行者一号」完成首次有动力的持续可控飞行，最长一次留空 59 秒、飞行约 260 米。这一天被视为现代航空史的起点。",
+    "category": "technology",
+    "region": "world",
+    "origin": "北美·美国",
+    "dateKind": "exact",
+    "tags": [
+      "莱特兄弟",
+      "航空",
+      "1903"
+    ],
+    "weight": 68,
+    "source": "原创整理",
+    "license": "self-authored",
+    "retrievedAt": "2026-11-19"
   }
 ]

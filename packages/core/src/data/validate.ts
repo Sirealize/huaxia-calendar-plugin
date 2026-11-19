@@ -92,6 +92,21 @@ export function validateHistoricalEvent(event: HistoricalEvent, path = 'event'):
   }
   requireString(out, `${path}.source`, event.source);
   requireLicense(out, `${path}.license`, event.license);
+  if (event.region !== undefined && event.region !== 'china' && event.region !== 'world') {
+    issue(out, `${path}.region`, `region 只能是 'china' 或 'world'（收到 ${String(event.region)}）`);
+  }
+  if (event.origin !== undefined && typeof event.origin !== 'string') {
+    issue(out, `${path}.origin`, 'origin 必须是字符串，如「中国·北宋」');
+  }
+  if (event.region === undefined || event.origin === undefined) {
+    issue(out, `${path}.region`, '建议同时标注 region 与 origin，便于轮播时区分中华文明与其他文明', 'warning');
+  }
+  if (event.dateKind !== undefined && event.dateKind !== 'exact' && event.dateKind !== 'period') {
+    issue(out, `${path}.dateKind`, `dateKind 只能是 'exact' 或 'period'（收到 ${String(event.dateKind)}）`);
+  }
+  if (event.dateKind === undefined) {
+    issue(out, `${path}.dateKind`, '建议标注 dateKind：exact 表示确为当日事件，period 表示文明坐标（非当日）', 'warning');
+  }
   if (event.sourceUrl !== undefined && typeof event.sourceUrl !== 'string') {
     issue(out, `${path}.sourceUrl`, '必须是字符串');
   }

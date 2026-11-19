@@ -1,7 +1,7 @@
 {
   "name": "huaxia-calendar-dsh",
-  "version": "0.2.0",
-  "description": "华夏文明日历 · DeepSeek Harness 客户端插件（v0.2.0）：中央整页月历 + 设置里的「华夏日历」分区 + 左下角可拖拽常驻月历。完全跟随宿主主题，全离线。",
+  "version": "0.3.0",
+  "description": "华夏文明日历 · DeepSeek Harness 客户端插件（v0.3.0）：中央整页月历（当天多条历史叙事轮播）+ 设置里的「华夏日历」分区 + 左下角可拖拽常驻月历。完全跟随宿主主题，全离线。",
   "type": "module",
   "main": "lib/index.js",
   "exports": {

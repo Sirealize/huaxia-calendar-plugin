@@ -8,6 +8,12 @@
  *   C. 左下角月历：默认贴左下角、`pointer-events: auto`、7×N 网格带农历、
  *      年/月翻页按钮、点击日期后的信息行、收起/展开、位置持久化。
  *
+ * 0.3.0 的新增断言重点（用户反馈「历史叙事需要轮播、古今中外」的落地证据）：
+ *   D. 轮播：产物含 `getEventsForDate` 与轮播状态机/控件标记；今天多条时渲染
+ *      `‹` `›`、`1 / N` 计数、可点击圆点、`origin`（中华/世界）与 category 中文标签；
+ *      只有 1 条时隐藏控件，0 条时降级为「今日暂无条目」；
+ *   E. 左下角当日信息行：多条时出现 `1/N` 计数并可点击切下一条。
+ *
  * 它做四类断言：
  *   1. 安装契约：`package.json.dsh` 清单 + `cordis.patch.yml` + `engines.dsh` 精确版本 + 版本号；
  *   2. bundle 契约：通过 `window.__ModuleLoader__` 接缝，id 与包名一致，平台模块走 external、
@@ -15,13 +21,13 @@
  *   3. 席位契约：三个席位（main / settings.section / shell.overlay）按 0.2.0 的元数据注册，
  *      `sidebar.panellist` 没有被注册；
  *   4. 真日历逻辑：用 React 的轻量替身真的调用组件，检查 7×N 月网格、今天农历与 core 实算一致、
- *      当月节气名出现在格子里、历史叙事降级、设置分区内容、左下角月历的默认位置/翻页/收起态。
+ *      当月节气名出现在格子里、历史叙事轮播、设置分区内容、左下角月历的默认位置/翻页/收起态。
  *
  * 用法：`npm run verify`（需先 `npm run build`）。
  */
 import { existsSync, readFileSync, statSync } from 'node:fs'
-import { getGanZhi, getSolarTerms, SOLAR_TERM_NAMES, solarToLunar } from '@shishu/core'
-import { getEventForDate } from '@shishu/content-l1'
+import { getFestivals, getGanZhi, getSolarTermOn, getSolarTerms, SOLAR_TERM_NAMES, solarToLunar } from '@shishu/core'
+import { getEventsForDate, getEventForDate } from '@shishu/content-l1'
 
 const here = (path) => new URL(path, import.meta.url)
 const fail = (message) => {
@@ -36,7 +42,7 @@ const pkg = JSON.parse(readFileSync(here('./package.json'), 'utf8'))
 const patchPath = here('./cordis.patch.yml')
 
 assert(pkg.name === 'huaxia-calendar-dsh', `包名必须是 unscoped huaxia-calendar-dsh，实际 ${pkg.name}`)
-assert(pkg.version === '0.2.0', `版本号必须是 0.2.0，实际 ${pkg.version}`)
+assert(pkg.version === '0.3.0', `版本号必须是 0.3.0，实际 ${pkg.version}`)
 assert(pkg.dsh?.manifestVersion === 1, 'package.json 缺 dsh.manifestVersion: 1')
 assert(pkg.dsh?.bundle?.patch === './cordis.patch.yml', 'package.json 缺 dsh.bundle.patch')
 assert(pkg.dsh?.client?.platform === 'web', 'dsh.client.platform 必须是 web')
@@ -121,6 +127,7 @@ for (const marker of [
   'data-huaxia-mini-handle',
   'data-huaxia-mini-grid',
   'data-huaxia-mini-detail',
+  'data-huaxia-mini-count',
   'data-huaxia-mini-collapsed',
   'huaxia-calendar.mini.v1',
   'pointerEvents',
@@ -132,6 +139,32 @@ for (const marker of [
 ]) {
   assert(bundle.includes(marker), `左下角月历的实现标记缺失：${marker}`)
 }
+
+// 2e. 0.3.0 历史叙事轮播：当天多条取数 API + 状态机/控件必须在产物里。
+//     `getEventsForDate` 是内容包契约（当天全部条目，中华优先），删掉它就退化成单条。
+for (const marker of [
+  'getEventsForDate',
+  'data-huaxia-carousel',
+  'data-huaxia-carousel-stage',
+  'data-huaxia-carousel-total',
+  'data-huaxia-carousel-region',
+  'data-huaxia-carousel-category',
+  'data-huaxia-carousel-controls',
+  'data-huaxia-carousel-prev',
+  'data-huaxia-carousel-next',
+  'data-huaxia-carousel-dot',
+  'data-huaxia-carousel-count',
+  'data-huaxia-carousel-kind',
+  '上一条历史叙事',
+  '下一条历史叙事',
+  '历史上的今天',
+  '华夏文明坐标',
+  '每 8 秒自动切换',
+]) {
+  assert(bundle.includes(marker), `历史叙事轮播的实现标记缺失：${marker}`)
+}
+// 轮播方案里不允许再出现「只显示一条」的旧结构：单条展示字段仍保留作兼容，
+// 但今日一屏的叙事区块必须挂轮播根节点（上面已断言 data-huaxia-carousel）。
 
 const PLATFORM_MODULES = [
   'react',
@@ -156,6 +189,11 @@ const reactStub = {
   },
   Fragment: Symbol('Fragment'),
   useState: (initial) => [typeof initial === 'function' ? initial() : initial, () => {}],
+  useReducer: (reducer, initialArg, init) => {
+    // 0.3.0 的轮播用 useReducer；替身只给「初始状态 + 空 dispatch」就够渲染一遍结构。
+    if (typeof init === 'function') return [init(initialArg), () => {}]
+    return [typeof initialArg === 'function' ? initialArg() : initialArg, () => {}]
+  },
   useMemo: (factory) => factory(),
   useCallback: (fn) => fn,
   useRef: (value) => ({ current: value }),
@@ -338,7 +376,8 @@ assert(
 )
 assert(panelText.includes('华夏文明日历'), '主面板没有标题「华夏文明日历」')
 assert(panelText.includes('今日一屏'), '主面板缺少「今日一屏」')
-assert(panelText.includes('历史叙事'), '主面板缺少历史叙事区块')
+// 0.3.0：区块标题按 dateKind 变化，不再笼统叫「历史叙事」（稍后按当天数据精确断言）
+assert(!panelText.includes('历史叙事 · 历史上的今天'), '主面板仍用笼统的「历史叙事 · 历史上的今天」标题')
 assert(panelText.includes('干支'), '主面板缺少干支行')
 assert(panelText.includes('节气'), '主面板缺少节气行')
 assert(!panelText.includes('农历数据待接入'), '主面板仍是 spike 占位文案')
@@ -385,6 +424,133 @@ if (todayEvent !== undefined) {
   assert(panelText.includes(todayEvent.title), `主面板没有渲染今天的历史叙事「${todayEvent.title}」`)
 } else {
   assert(panelText.includes('今日暂无条目'), '内容包今天没有条目，主面板没有降级为「今日暂无条目」')
+}
+
+// 4a-2. 历史叙事轮播（0.3.0）：当天全部条目、控件、计数、圆点、标签。
+//       条数不写死（内容包每天 1~3 条都可能），0 / 1 / N 三种情况都要成立。
+const todayEvents = getEventsForDate(today.month, today.day)
+const carouselEl = panel.elements.find((el) => el.props?.['data-huaxia-carousel'] !== undefined)
+assert(carouselEl !== undefined, '今日一屏缺少历史叙事轮播根节点 data-huaxia-carousel')
+assert(
+  carouselEl.props['data-huaxia-carousel-total'] === todayEvents.length,
+  `轮播条目总数应为 ${todayEvents.length}，实际 ${String(carouselEl.props['data-huaxia-carousel-total'])}`,
+)
+const carouselText = textOf(carouselEl)
+const carouselControls = panel.elements.filter(
+  (el) => el.props?.['data-huaxia-carousel-controls'] !== undefined,
+)
+const carouselDots = panel.elements.filter((el) => el.props?.['data-huaxia-carousel-dot'] !== undefined)
+const carouselPrev = panel.elements.find((el) => el.props?.['data-huaxia-carousel-prev'] !== undefined)
+const carouselNext = panel.elements.find((el) => el.props?.['data-huaxia-carousel-next'] !== undefined)
+const carouselCounter = panel.elements.find(
+  (el) => el.props?.['data-huaxia-carousel-counter'] !== undefined,
+)
+
+if (todayEvents.length > 1) {
+  // 多条：控件、`1 / N` 计数、可点击圆点、上/下一条按钮全部出现
+  assert(carouselControls.length === 1, '多条历史叙事时必须渲染轮播控件')
+  assert(carouselDots.length === todayEvents.length, `圆点数应等于条目数 ${todayEvents.length}，实际 ${carouselDots.length}`)
+  assert(carouselPrev !== undefined && carouselNext !== undefined, '轮播缺少 ‹ / › 切换按钮')
+  assert(
+    String(carouselPrev.props['aria-label']) === '上一条历史叙事',
+    '「上一条」按钮 aria-label 必须是「上一条历史叙事」',
+  )
+  assert(
+    String(carouselNext.props['aria-label']) === '下一条历史叙事',
+    '「下一条」按钮 aria-label 必须是「下一条历史叙事」',
+  )
+  assert(carouselCounter !== undefined, '轮播缺少计数元素 data-huaxia-carousel-counter')
+  assert(
+    textOf(carouselCounter) === `1 / ${todayEvents.length}`,
+    `轮播计数应为 1 / ${todayEvents.length}，实际 ${textOf(carouselCounter)}`,
+  )
+  // 圆点可点击跳转第 N 条
+  assert(
+    carouselDots.every((dot) => typeof dot.props.onClick === 'function'),
+    '轮播圆点必须可以点击跳转',
+  )
+  assert(
+    carouselDots.some((dot) => String(dot.props['aria-label']).includes(todayEvents[1].title)),
+    '圆点 aria-label 必须能识别到当天条目',
+  )
+  // 多条时高度与圆点状态：第一条是当前条目
+  assert(
+    carouselDots[0].props['aria-current'] === 'true',
+    '第 1 条圆点应为当前条目（aria-current=true）',
+  )
+} else {
+  // 0 / 1 条：隐藏切换控件与圆点
+  assert(carouselControls.length === 0, `${todayEvents.length} 条历史叙事时不应显示轮播控件`)
+  assert(carouselDots.length === 0, `${todayEvents.length} 条历史叙事时不应显示圆点`)
+}
+
+if (todayEvents.length > 0) {
+  const first = todayEvents[0]
+  // 当前条目的：年份 + 标题 + 摘要 + origin 标签 + category 中文标签
+  assert(carouselText.includes(first.yearLabel), `轮播没有渲染年份「${first.yearLabel}」`)
+  assert(carouselText.includes(first.title), `轮播没有渲染标题「${first.title}」`)
+  assert(carouselText.includes(first.summary), '轮播没有渲染摘要')
+  if (first.origin !== undefined && first.origin.length > 0) {
+    assert(carouselText.includes(first.origin), `轮播没有渲染 origin 标签「${first.origin}」`)
+  }
+  const region = first.region === 'world' ? 'world' : 'china'
+  const stage = panel.elements.find((el) => el.props?.['data-huaxia-carousel-stage'] !== undefined)
+  assert(stage !== undefined, '轮播缺少可聚焦的舞台节点 data-huaxia-carousel-stage')
+  assert(stage.props.tabIndex === 0, '轮播容器必须可聚焦（tabIndex=0）')
+  assert(typeof stage.props.onKeyDown === 'function', '轮播容器必须支持键盘 ←/→ 切换')
+  assert(typeof stage.props.onFocus === 'function', '键盘聚焦时必须能暂停自动轮播')
+  assert(typeof stage.props.onBlur === 'function', '失焦时必须能恢复自动轮播')
+  const regionChip = panel.elements.find(
+    (el) => el.props?.['data-huaxia-carousel-region'] !== undefined,
+  )
+  assert(regionChip !== undefined, '轮播缺少文明归属标签 data-huaxia-carousel-region')
+  assert(
+    regionChip.props['data-huaxia-carousel-region'] === region,
+    `文明归属标签应为 ${region}，实际 ${String(regionChip.props['data-huaxia-carousel-region'])}`,
+  )
+  const categoryChip = panel.elements.find(
+    (el) => el.props?.['data-huaxia-carousel-category'] !== undefined,
+  )
+  assert(categoryChip !== undefined, '轮播缺少分类标签 data-huaxia-carousel-category')
+  assert(
+    /[\u4e00-\u9fa5]/.test(textOf(categoryChip)),
+    `分类标签必须是中文，实际「${textOf(categoryChip)}」`,
+  )
+
+  // 日期口径 dateKind：exact / period 必须有明确、可区分的类型标签（缺失按 period 降级）
+  const kind = first.dateKind === 'exact' ? 'exact' : 'period'
+  const kindChip = panel.elements.find((el) => el.props?.['data-huaxia-carousel-kind'] !== undefined)
+  assert(kindChip !== undefined, '轮播缺少日期口径标签 data-huaxia-carousel-kind')
+  assert(
+    kindChip.props['data-huaxia-carousel-kind'] === kind,
+    `日期口径标签应为 ${kind}，实际 ${String(kindChip.props['data-huaxia-carousel-kind'])}`,
+  )
+  const kindText = textOf(kindChip)
+  if (kind === 'exact') {
+    assert(kindText === '历史上的今天', `exact 条目类型标签应为「历史上的今天」，实际「${kindText}」`)
+  } else {
+    assert(kindText.includes('华夏文明坐标'), `period 条目类型标签必须含「华夏文明坐标」，实际「${kindText}」`)
+    assert(kindText.includes(first.yearLabel), `period 类型标签必须带 yearLabel「${first.yearLabel}」，实际「${kindText}」`)
+    const originLabel = first.origin !== undefined && first.origin.length > 0 ? first.origin : region === 'world' ? '世界' : '中华'
+    assert(kindText.includes(originLabel), `period 类型标签必须带 origin「${originLabel}」，实际「${kindText}」`)
+    assert(!kindText.includes('今天'), 'period（文明坐标）标签不能含「今天」')
+  }
+
+  // 区块标题：有 exact 才允许「今日」；全 period 用「华夏文明坐标 · 古今中外」；0 条中性标题
+  const hasExact = todayEvents.some((event) => event.dateKind === 'exact')
+  const expectedTitle = hasExact ? '今日 · 古今中外' : '华夏文明坐标 · 古今中外'
+  assert(panelText.includes(expectedTitle), `轮播区块标题应为「${expectedTitle}」`)
+  if (!hasExact) {
+    assert(!panelText.includes('今日 · 古今中外'), '全部是 period 条目时标题不应出现「今日」')
+  }
+  // 自动轮播：8 秒常量与暂停提示必须在产物里（bundle 层已断言标记，这里断言渲染提示）
+  assert(
+    carouselText.includes('每 8 秒自动切换') || todayEvents.length <= 1,
+    '多条历史叙事时应提示自动轮播节奏（每 8 秒自动切换）',
+  )
+} else {
+  assert(carouselText.includes('今日暂无条目'), '0 条历史叙事时轮播必须降级为「今日暂无条目」')
+  assert(panelText.includes('古今中外 · 文明坐标'), '0 条历史叙事时区块标题应为中性的「古今中外 · 文明坐标」')
 }
 
 // 4b. 设置分区（用户意见②）：标题 + 说明 + 打开完整日历 + 显示开关
@@ -456,6 +622,41 @@ assert(miniDetail !== undefined, '左下角月历缺少选中日信息行')
 const miniDetailText = textOf(miniDetail)
 assert(miniDetailText.includes(todayLunar.lunarDayName), `选中日信息行没有今天的农历「${todayLunar.lunarDayName}」`)
 assert(miniDetailText.includes(`${todayGanZhi.day}日`), `选中日信息行没有干支日 ${todayGanZhi.day}`)
+
+// 4c-1. 左下角信息行的日期口径标记（0.3.0）：period 条目行尾标「文明坐标」，exact 不标。
+const miniDetailNode = mini.elements.find((el) => el.props?.['data-huaxia-mini-detail'] !== undefined)
+const expectedKind = todayEvents[0] === undefined ? undefined : todayEvents[0].dateKind === 'exact' ? 'exact' : 'period'
+if (expectedKind !== undefined) {
+  assert(
+    miniDetailNode.props['data-huaxia-mini-date-kind'] === expectedKind,
+    `左下角信息行日期口径应为 ${expectedKind}，实际 ${String(miniDetailNode.props['data-huaxia-mini-date-kind'])}`,
+  )
+  const todayBriefShowsEvent =
+    getSolarTermOn(today) === undefined && getFestivals(today).length === 0
+  if (expectedKind === 'period' && todayBriefShowsEvent) {
+    assert(miniDetailText.includes('文明坐标'), '左下角当前条目是 period 时，行尾必须标「文明坐标」')
+  }
+  if (expectedKind === 'exact' && todayBriefShowsEvent) {
+    assert(!miniDetailText.includes('文明坐标'), '左下角当前条目是 exact 时，不应标「文明坐标」')
+  }
+}
+
+// 4c-2. 左下角多条叙事：`1/N` 计数 + 点击切下一条（0.3.0）；0 / 1 条时没有计数按钮。
+const miniCountButton = mini.elements.find((el) => el.props?.['data-huaxia-mini-count'] !== undefined)
+if (todayEvents.length > 1) {
+  assert(miniCountButton !== undefined, '左下角当天多条历史叙事时必须显示计数按钮')
+  assert(
+    textOf(miniCountButton) === `1/${todayEvents.length}`,
+    `左下角计数应为 1/${todayEvents.length}，实际 ${textOf(miniCountButton)}`,
+  )
+  assert(typeof miniCountButton.props.onClick === 'function', '左下角计数按钮必须能点击切下一条')
+  // 展开态信息行有内容（节气 / 节日 / 叙事标题三者之一，日期相关不写死）
+  const detailText = mini.elements.find((el) => el.props?.['data-huaxia-mini-detail-text'] !== undefined)
+  assert(detailText !== undefined, '左下角信息行缺少 data-huaxia-mini-detail-text')
+  assert(textOf(detailText).length > 0, '左下角信息行不能是空行')
+} else {
+  assert(miniCountButton === undefined, `${todayEvents.length} 条历史叙事时左下角不应显示计数按钮`)
+}
 
 // 4d. 收起态 + 位置恢复：换一份「已收起、已拖到 (40, 50)」的 localStorage 重新装一遍
 globalThis.localStorage = fakeStorage({
@@ -539,6 +740,24 @@ console.log('month grid         :', `${dayCells.length} 格 (${dayCells.length /
 console.log('today (core 对账)  :', `${todayLunar.lunarDateName} · ${todayGanZhi.year}年 · ${todayGanZhi.day}日`)
 console.log('solar terms (本月) :', termCells.map((term) => term.name).join('、'))
 console.log('today narrative    :', todayEvent === undefined ? '（无条目 → 已降级）' : `${todayEvent.yearLabel} ${todayEvent.title}`)
+console.log(
+  'history carousel   :',
+  todayEvents.length <= 1
+    ? `${todayEvents.length} 条 · 单条时隐藏切换控件`
+    : `${todayEvents.length} 条 · ‹ › / 1 / N 计数 / 可点圆点 / 8 秒自动播放（悬停·聚焦暂停）/ ←→ 键盘切换`,
+)
+const kindCounts = { exact: 0, period: 0 }
+for (const event of todayEvents) kindCounts[event.dateKind === 'exact' ? 'exact' : 'period'] += 1
+console.log(
+  'date kind labels   :',
+  `exact ${kindCounts.exact} 条（历史上的今天）· period ${kindCounts.period} 条（华夏文明坐标，缺省降级）`,
+)
 console.log('mini calendar      :', `${miniCells.length} 格 · 默认左下角 · 翻年/翻月/今天 · 收起态与位置可持久化`)
+console.log(
+  'mini today line    :',
+  todayEvents.length > 1 ? `多条叙事显示 ${`1/${todayEvents.length}`} 计数，点击切下一条` : '单条/无条目时不显示计数',
+)
 console.log('\nOK: 3 个席位（main / settings.section / shell.overlay），无 sidebar.panellist、无今日浮标；')
-console.log('    主题只用宿主 token；左下角月历网格/农历/翻页/收起与 core 实算一致。')
+console.log('    主题只用宿主 token；左下角月历网格/农历/翻页/收起与 core 实算一致；')
+console.log('    今日一屏历史叙事为轮播（中华优先、兼及世界，0/1/N 条均正确降级）；')
+console.log('    每条按 dateKind 标注「历史上的今天」/「华夏文明坐标」，区块标题与空状态不误导「今天」。')

@@ -1,6 +1,6 @@
 {
   "name": "huaxia-calendar",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "华夏文明日历 —— 装在 AI 编码工具里的公历+农历+节气+历史叙事日历插件",
   "type": "module",

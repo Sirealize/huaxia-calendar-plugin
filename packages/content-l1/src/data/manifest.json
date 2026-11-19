@@ -6,7 +6,7 @@
   "generatedAt": "2026-11-18T00:00:00.000Z",
   "license": "self-authored",
   "counts": {
-    "historicalEvents": 30,
+    "historicalEvents": 90,
     "hexagrams": 0,
     "festivals": 0
   },
@@ -20,9 +20,9 @@
   "files": [
     {
       "path": "data/historical-events.json",
-      "bytes": 19826,
-      "sha256": "49dd38475cc0edc453205db6aac4abdd41f79735d77ffb965e43a8714db2ccaf",
-      "recordCount": 30
+      "bytes": 67382,
+      "sha256": "4245b45d61a0c08f17e6ea1949b86839fa405108ba926b534c6982c8347d3c75",
+      "recordCount": 90
     }
   ],
   "attribution": "本内容包全部条目为原创整理（self-authored），叙述文字为原创；所述年份均为公开可核实的史实，不随包分发任何第三方百科正文。"

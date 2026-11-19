@@ -18,7 +18,7 @@ import {
   type LunarDateInfo,
   type SolarTerm,
 } from '@shishu/core'
-import { getEventForDate } from '@shishu/content-l1'
+import { getEventsForDate } from '@shishu/content-l1'
 
 /** 公历日期字段（与 `@shishu/core` 的 SolarDateInput 结构兼容）。 */
 export interface CalendarDate {
@@ -58,7 +58,7 @@ export interface MonthHeader {
   lunarTitle: string
 }
 
-/** 当日一屏：公历 + 农历 + 干支 + 节气 + 节日 + 一条历史叙事。 */
+/** 当日一屏：公历 + 农历 + 干支 + 节气 + 节日 + 当天全部历史叙事。 */
 export interface DayBrief {
   date: CalendarDate
   weekdayName: string
@@ -69,7 +69,15 @@ export interface DayBrief {
   /** 下一个节气（当天是节气日时也给出，用于倒计时）。 */
   nextSolarTerm: SolarTerm
   festivals: FestivalInfo[]
-  /** 当天历史叙事；内容包未收录时为 undefined（UI 必须优雅降级）。 */
+  /**
+   * 当天全部历史叙事，**已排序**（中华文明优先 → weight 降序 → 年份升序）。
+   * 0.3.0 起「今日一屏」用它做轮播；内容包未收录当天条目时为空数组。
+   */
+  events: HistoricalEvent[]
+  /**
+   * 当天第一条历史叙事（兼容 0.2.0 的单条展示 / 左下角月历信息行）；
+   * 等价于 `events[0]`，0 条时为 undefined。
+   */
   event?: HistoricalEvent
 }
 
@@ -193,10 +201,14 @@ export function buildMonthHeader(year: number, month: number): MonthHeader {
 
 /**
  * 当日一屏取数。传入 `Date` 时按宿主本地时区读字段；传入 `CalendarDate` 时可复现。
+ *
+ * 历史叙事取**当天全部条目**（`getEventsForDate`，已排序）：`events` 供轮播使用，
+ * `event` 保留为第一条以兼容旧调用。
  */
 export function buildDayBrief(input: CalendarDate | Date): DayBrief {
   const date = input instanceof Date ? todayDate(input) : input
   const lunar = solarToLunar(date)
+  const events = getEventsForDate(date.month, date.day)
   return {
     date,
     weekdayName: lunar.weekdayName,
@@ -205,7 +217,8 @@ export function buildDayBrief(input: CalendarDate | Date): DayBrief {
     solarTerm: getSolarTermOn(date),
     nextSolarTerm: getNextSolarTerm(date),
     festivals: getFestivals(date),
-    event: getEventForDate(date.month, date.day),
+    events,
+    event: events[0],
   }
 }
 

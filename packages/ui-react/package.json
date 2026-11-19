@@ -1,8 +1,8 @@
 {
   "name": "@shishu/ui-react",
-  "version": "0.1.0-m0.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "华夏文明日历 React 18 展示层：月历面板 + 今日浮标。宿主无关，不依赖任何 @deepseek-ai/*，可被 DSH / VS Code webview 复用。",
+  "description": "华夏文明日历 React 18 展示层：整页月历 + 左下角可拖拽小月历 + 设置分区卡片。宿主无关，不依赖任何 @deepseek-ai/*，完全跟随宿主主题 token，可被 DSH / VS Code webview 复用。",
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",

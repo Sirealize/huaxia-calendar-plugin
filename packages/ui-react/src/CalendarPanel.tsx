@@ -1,8 +1,11 @@
 /**
  * `<CalendarPanel />` —— 主面板整页月历 + 当日一屏。
  *
- * 宿主无关：只用 React 18 + 内联样式 + CSS 变量，读不到也不依赖任何 DSH API，
- * 所以同一个组件可以直接搬进 VS Code webview。
+ * 宿主无关：只用 React 18 + 内联样式 + 宿主主题 CSS 变量，读不到也不依赖任何
+ * DSH API，所以同一个组件可以直接搬进 VS Code webview。
+ *
+ * 0.2.0：配色全部改为宿主 DSH 主题 token（见 `./theme.ts`），不再自带任何品牌色，
+ * light / dark 模式下自动跟随宿主。
  *
  * 数据全部来自 `@shishu/core`（农历/节气/干支/节日本地实算）与
  * `@shishu/content-l1`（每天一条历史叙事）。
@@ -31,20 +34,20 @@ import {
   formatSolarDate,
   formatSolarTermLine,
 } from './pure/format.ts'
-import { PANEL_VARS, PAPER_BACKGROUND, type CalendarStyle } from './theme.ts'
+import { RADIUS, TOKENS, fontSize, type CalendarStyle } from './theme.ts'
 
 /** 月历格子的固定行高（px）；行数 4–6 由网格自适应。 */
 const CELL_HEIGHT = 52
 
 const rootStyle: CalendarStyle = {
-  ...PANEL_VARS,
   boxSizing: 'border-box',
   width: '100%',
   minHeight: '100%',
   padding: '22px 26px 20px',
-  background: PAPER_BACKGROUND,
-  color: 'var(--hx-ink)',
-  fontFamily: 'var(--hx-font-serif)',
+  background: TOKENS.bgBase,
+  color: TOKENS.labelPrimary,
+  fontFamily: TOKENS.fontText,
+  fontSize: TOKENS.contentFontSize,
   overflow: 'auto',
 }
 
@@ -61,40 +64,41 @@ const headerStyle: CalendarStyle = {
   gap: 16,
   flexWrap: 'wrap',
   paddingBottom: 14,
-  borderBottom: `2px solid var(--hx-ink)`,
+  borderBottom: `1px solid ${TOKENS.borderL2}`,
 }
 
 const sealStyle: CalendarStyle = {
   width: 30,
   height: 30,
   flex: '0 0 auto',
-  borderRadius: 4,
-  background: 'var(--hx-cinnabar)',
-  color: 'var(--hx-paper-hi)',
-  fontFamily: 'var(--hx-font-serif)',
-  fontSize: 18,
-  lineHeight: '30px',
+  borderRadius: RADIUS.sm,
+  border: `1px solid ${TOKENS.borderL2}`,
+  background: TOKENS.interactiveHover,
+  color: TOKENS.brandPrimary,
+  fontFamily: TOKENS.fontText,
+  fontSize: fontSize(4),
+  fontWeight: 600,
+  lineHeight: '28px',
   textAlign: 'center',
   letterSpacing: 0,
-  boxShadow: 'inset 0 0 0 1px rgba(253, 250, 242, 0.35)',
   userSelect: 'none',
 }
 
 const titleStyle: CalendarStyle = {
   margin: 0,
-  fontSize: 22,
+  fontSize: fontSize(8),
   fontWeight: 600,
-  letterSpacing: 3,
-  lineHeight: 1.2,
-  color: 'var(--hx-ink)',
+  letterSpacing: 1.5,
+  lineHeight: 1.25,
+  color: TOKENS.labelPrimary,
 }
 
 const subtitleStyle: CalendarStyle = {
   margin: '5px 0 0',
-  fontSize: 11.5,
-  letterSpacing: 1,
-  color: 'var(--hx-ink-faint)',
-  fontFamily: 'var(--hx-font-sans)',
+  fontSize: fontSize(-2),
+  letterSpacing: 0.5,
+  color: TOKENS.labelTertiary,
+  fontFamily: TOKENS.fontText,
 }
 
 const navGroupStyle: CalendarStyle = {
@@ -106,12 +110,12 @@ const navGroupStyle: CalendarStyle = {
 
 const navButtonBase: CalendarStyle = {
   appearance: 'none',
-  border: '1px solid var(--hx-line)',
-  borderRadius: 6,
-  background: 'rgba(253, 250, 242, 0.7)',
-  color: 'var(--hx-ink-soft)',
-  fontFamily: 'var(--hx-font-sans)',
-  fontSize: 12,
+  border: `1px solid ${TOKENS.borderL2}`,
+  borderRadius: RADIUS.sm,
+  background: TOKENS.bgLayer1,
+  color: TOKENS.labelSecondary,
+  fontFamily: TOKENS.fontText,
+  fontSize: fontSize(-2),
   lineHeight: 1,
   padding: '6px 10px',
   cursor: 'pointer',
@@ -127,17 +131,17 @@ const monthBarStyle: CalendarStyle = {
 }
 
 const monthTitleStyle: CalendarStyle = {
-  fontSize: 17,
+  fontSize: fontSize(3),
   fontWeight: 600,
-  letterSpacing: 1.5,
-  color: 'var(--hx-ink)',
+  letterSpacing: 0.5,
+  color: TOKENS.labelPrimary,
 }
 
 const monthMetaStyle: CalendarStyle = {
-  fontSize: 11,
-  letterSpacing: 1,
-  color: 'var(--hx-ink-faint)',
-  fontFamily: 'var(--hx-font-sans)',
+  fontSize: fontSize(-3),
+  letterSpacing: 0.5,
+  color: TOKENS.labelTertiary,
+  fontFamily: TOKENS.fontText,
 }
 
 const bodyStyle: CalendarStyle = {
@@ -158,7 +162,7 @@ const weekdayRowStyle: CalendarStyle = {
   gridTemplateColumns: 'repeat(7, minmax(0, 1fr))',
   gap: 4,
   paddingBottom: 6,
-  borderBottom: '1px solid var(--hx-line-soft)',
+  borderBottom: `1px solid ${TOKENS.borderL1}`,
 }
 
 const gridStyle: CalendarStyle = {
@@ -174,10 +178,10 @@ const hintRowStyle: CalendarStyle = {
   justifyContent: 'space-between',
   gap: 10,
   paddingTop: 10,
-  fontSize: 10.5,
-  letterSpacing: 0.6,
-  color: 'var(--hx-ink-faint)',
-  fontFamily: 'var(--hx-font-sans)',
+  fontSize: fontSize(-3),
+  letterSpacing: 0.3,
+  color: TOKENS.labelTertiary,
+  fontFamily: TOKENS.fontText,
 }
 
 const briefCardStyle: CalendarStyle = {
@@ -185,11 +189,10 @@ const briefCardStyle: CalendarStyle = {
   minWidth: 272,
   boxSizing: 'border-box',
   padding: '14px 16px 16px',
-  border: '1px solid var(--hx-line)',
-  borderRadius: 10,
-  background:
-    'linear-gradient(180deg, rgba(253, 250, 242, 0.92) 0%, rgba(250, 245, 233, 0.92) 100%)',
-  boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.7)',
+  border: `1px solid ${TOKENS.borderL1}`,
+  borderRadius: RADIUS.md,
+  background: TOKENS.bgLayer2,
+  boxShadow: TOKENS.elevationSoft,
 }
 
 const briefHeadStyle: CalendarStyle = {
@@ -197,21 +200,21 @@ const briefHeadStyle: CalendarStyle = {
   alignItems: 'baseline',
   justifyContent: 'space-between',
   paddingBottom: 8,
-  borderBottom: '1px solid var(--hx-line-soft)',
+  borderBottom: `1px solid ${TOKENS.borderL1}`,
 }
 
 const briefTitleStyle: CalendarStyle = {
-  fontSize: 13,
+  fontSize: fontSize(-1),
   fontWeight: 600,
-  letterSpacing: 2,
-  color: 'var(--hx-ink)',
+  letterSpacing: 1,
+  color: TOKENS.labelPrimary,
 }
 
 const briefWeekdayStyle: CalendarStyle = {
-  fontSize: 11,
-  letterSpacing: 1,
-  color: 'var(--hx-ink-faint)',
-  fontFamily: 'var(--hx-font-sans)',
+  fontSize: fontSize(-3),
+  letterSpacing: 0.5,
+  color: TOKENS.labelTertiary,
+  fontFamily: TOKENS.fontText,
 }
 
 const bigDateStyle: CalendarStyle = {
@@ -222,25 +225,25 @@ const bigDateStyle: CalendarStyle = {
 }
 
 const bigDayStyle: CalendarStyle = {
-  fontSize: 40,
+  fontSize: fontSize(26),
   fontWeight: 600,
   lineHeight: 1,
   letterSpacing: -1,
-  color: 'var(--hx-ink)',
+  color: TOKENS.labelPrimary,
 }
 
 const bigDayTodayStyle: CalendarStyle = {
   ...bigDayStyle,
-  color: 'var(--hx-cinnabar)',
+  color: TOKENS.brandPrimary,
 }
 
 const bigDateMetaStyle: CalendarStyle = {
   display: 'flex',
   flexDirection: 'column',
   gap: 3,
-  fontSize: 12,
-  color: 'var(--hx-ink-soft)',
-  fontFamily: 'var(--hx-font-sans)',
+  fontSize: fontSize(-2),
+  color: TOKENS.labelSecondary,
+  fontFamily: TOKENS.fontText,
 }
 
 const rowStyle: CalendarStyle = {
@@ -248,77 +251,77 @@ const rowStyle: CalendarStyle = {
   alignItems: 'baseline',
   gap: 8,
   padding: '6px 0',
-  borderBottom: '1px dashed var(--hx-line-soft)',
+  borderBottom: `1px dashed ${TOKENS.borderL1}`,
 }
 
 const rowLabelStyle: CalendarStyle = {
   flex: '0 0 auto',
   width: 36,
-  fontSize: 10.5,
-  letterSpacing: 1.5,
-  color: 'var(--hx-ink-faint)',
-  fontFamily: 'var(--hx-font-sans)',
+  fontSize: fontSize(-3.5),
+  letterSpacing: 1,
+  color: TOKENS.labelTertiary,
+  fontFamily: TOKENS.fontText,
 }
 
 const rowValueStyle: CalendarStyle = {
   flex: '1 1 auto',
-  fontSize: 12.5,
+  fontSize: fontSize(-1.5),
   lineHeight: 1.6,
-  color: 'var(--hx-ink)',
+  color: TOKENS.labelPrimary,
 }
 
 const eventBlockStyle: CalendarStyle = {
   marginTop: 12,
   padding: '11px 12px',
-  border: '1px solid var(--hx-line)',
-  borderRadius: 8,
-  background: 'rgba(255, 255, 255, 0.55)',
+  border: `1px solid ${TOKENS.borderL1}`,
+  borderRadius: RADIUS.sm,
+  background: TOKENS.bgModule,
 }
 
 const eventLabelStyle: CalendarStyle = {
-  fontSize: 10.5,
-  letterSpacing: 2,
-  color: 'var(--hx-cinnabar)',
-  fontFamily: 'var(--hx-font-sans)',
+  fontSize: fontSize(-3.5),
+  letterSpacing: 1,
+  color: TOKENS.labelTertiary,
+  fontFamily: TOKENS.fontText,
   marginBottom: 6,
 }
 
 const eventHeadlineStyle: CalendarStyle = {
-  fontSize: 13,
+  fontSize: fontSize(-1),
   fontWeight: 600,
   lineHeight: 1.55,
-  color: 'var(--hx-ink)',
+  color: TOKENS.labelPrimary,
 }
 
 const eventSummaryStyle: CalendarStyle = {
   margin: '7px 0 0',
-  fontSize: 12,
-  lineHeight: 1.85,
-  color: 'var(--hx-ink-soft)',
+  fontSize: fontSize(-2),
+  lineHeight: 1.8,
+  color: TOKENS.labelSecondary,
   textAlign: 'justify',
 }
 
 const eventAttributionStyle: CalendarStyle = {
   marginTop: 8,
-  fontSize: 10,
-  letterSpacing: 0.5,
-  color: 'var(--hx-ink-faint)',
-  fontFamily: 'var(--hx-font-sans)',
+  fontSize: fontSize(-3.5),
+  letterSpacing: 0.3,
+  color: TOKENS.labelCaption,
+  fontFamily: TOKENS.fontText,
 }
 
 const eventEmptyStyle: CalendarStyle = {
-  fontSize: 12.5,
+  fontSize: fontSize(-1.5),
   lineHeight: 1.8,
-  color: 'var(--hx-ink-faint)',
+  color: TOKENS.labelTertiary,
 }
 
 const eventEmptyHintStyle: CalendarStyle = {
   display: 'block',
   marginTop: 4,
-  fontSize: 10.5,
-  letterSpacing: 0.5,
-  color: 'var(--hx-ink-faint)',
-  fontFamily: 'var(--hx-font-sans)',
+  fontSize: fontSize(-3.5),
+  letterSpacing: 0.3,
+  color: TOKENS.labelCaption,
+  fontFamily: TOKENS.fontText,
 }
 
 const festivalRowStyle: CalendarStyle = {
@@ -331,12 +334,12 @@ const festivalChipStyle: CalendarStyle = {
   display: 'inline-block',
   padding: '2px 7px',
   borderRadius: 999,
-  border: '1px solid var(--hx-cinnabar-line)',
-  background: 'var(--hx-cinnabar-soft)',
-  color: 'var(--hx-cinnabar)',
-  fontSize: 11,
+  border: `1px solid ${TOKENS.borderL2}`,
+  background: TOKENS.bgModule,
+  color: TOKENS.labelSecondary,
+  fontSize: fontSize(-3),
   lineHeight: 1.5,
-  letterSpacing: 0.5,
+  letterSpacing: 0.3,
 }
 
 const footerStyle: CalendarStyle = {
@@ -346,11 +349,11 @@ const footerStyle: CalendarStyle = {
   flexWrap: 'wrap',
   marginTop: 16,
   paddingTop: 8,
-  borderTop: '1px solid var(--hx-line)',
-  fontSize: 10,
-  letterSpacing: 0.6,
-  color: 'var(--hx-ink-faint)',
-  fontFamily: 'var(--hx-font-sans)',
+  borderTop: `1px solid ${TOKENS.borderL1}`,
+  fontSize: fontSize(-4),
+  letterSpacing: 0.3,
+  color: TOKENS.labelCaption,
+  fontFamily: TOKENS.fontText,
 }
 
 function cellStyle(day: CalendarDay, selected: boolean, hovered: boolean): CalendarStyle {
@@ -365,11 +368,11 @@ function cellStyle(day: CalendarDay, selected: boolean, hovered: boolean): Calen
     gap: 2,
     height: CELL_HEIGHT,
     padding: '2px 0 3px',
-    borderRadius: 7,
+    borderRadius: RADIUS.sm,
     border: '1px solid transparent',
     background: 'transparent',
-    color: 'var(--hx-ink)',
-    fontFamily: 'var(--hx-font-serif)',
+    color: TOKENS.labelPrimary,
+    fontFamily: TOKENS.fontText,
     cursor: 'pointer',
     transition: 'background 120ms ease, border-color 120ms ease',
     outline: 'none',
@@ -377,19 +380,19 @@ function cellStyle(day: CalendarDay, selected: boolean, hovered: boolean): Calen
   if (day.isToday) {
     return {
       ...base,
-      border: '1px solid var(--hx-cinnabar-line)',
-      background: 'var(--hx-cinnabar-soft)',
+      border: `1px solid ${TOKENS.brandPrimary}`,
+      background: TOKENS.interactiveHover,
     }
   }
   if (selected) {
     return {
       ...base,
-      border: '1px solid #bfae8c',
-      background: 'rgba(255, 255, 255, 0.62)',
+      border: `1px solid ${TOKENS.borderL3}`,
+      background: TOKENS.bgLayer3,
     }
   }
   if (hovered) {
-    return { ...base, background: 'rgba(255, 255, 255, 0.72)' }
+    return { ...base, background: TOKENS.interactiveHover }
   }
   return base
 }
@@ -402,28 +405,33 @@ function dayNumberStyle(day: CalendarDay): CalendarStyle {
     width: 24,
     height: 24,
     borderRadius: '50%',
-    fontSize: 14.5,
+    fontSize: fontSize(0.5),
     fontWeight: 500,
     lineHeight: 1,
     letterSpacing: 0,
-    color: day.isWeekend ? 'var(--hx-ink-soft)' : 'var(--hx-ink)',
+    color: day.isWeekend ? TOKENS.labelSecondary : TOKENS.labelPrimary,
   }
   if (day.isToday) {
-    return { ...base, background: 'var(--hx-cinnabar)', color: 'var(--hx-paper-hi)', fontWeight: 700 }
+    return {
+      ...base,
+      background: TOKENS.brandPrimary,
+      color: TOKENS.labelPrimaryForeground,
+      fontWeight: 600,
+    }
   }
   return base
 }
 
 function captionStyle(day: CalendarDay): CalendarStyle {
   const base: CalendarStyle = {
-    fontSize: 10.5,
+    fontSize: fontSize(-3),
     lineHeight: 1.2,
-    letterSpacing: 0.2,
-    color: 'var(--hx-ink-faint)',
+    letterSpacing: 0.1,
+    color: TOKENS.labelTertiary,
     whiteSpace: 'nowrap',
   }
-  if (day.solarTerm !== undefined) return { ...base, color: 'var(--hx-jade)' }
-  if (day.lunar.lunarDay === 1) return { ...base, color: 'var(--hx-cinnabar)' }
+  if (day.solarTerm !== undefined) return { ...base, color: TOKENS.brandPrimary, fontWeight: 500 }
+  if (day.lunar.lunarDay === 1) return { ...base, color: TOKENS.labelSecondary }
   return base
 }
 
@@ -434,7 +442,7 @@ const festivalDotStyle: CalendarStyle = {
   width: 4,
   height: 4,
   borderRadius: '50%',
-  background: 'var(--hx-cinnabar)',
+  background: TOKENS.stateError,
 }
 
 /** 月历整页。 */
@@ -458,10 +466,7 @@ export function CalendarPanel(): ReactElement {
   }, [])
 
   const header = useMemo(() => buildMonthHeader(view.year, view.month), [view])
-  const grid = useMemo(
-    () => buildMonthGrid(view.year, view.month, { today }),
-    [view, today],
-  )
+  const grid = useMemo(() => buildMonthGrid(view.year, view.month, { today }), [view, today])
   const brief = useMemo(() => buildDayBrief(selected), [selected])
 
   const goToday = useCallback(() => {
@@ -493,12 +498,12 @@ export function CalendarPanel(): ReactElement {
         ...navButtonBase,
         ...(emphasized
           ? {
-              border: '1px solid var(--hx-cinnabar-line)',
-              color: 'var(--hx-cinnabar)',
-              background: 'var(--hx-cinnabar-soft)',
+              border: `1px solid ${TOKENS.brandPrimary}`,
+              color: TOKENS.labelPrimaryForeground,
+              background: TOKENS.brandPrimary,
             }
           : null),
-        ...(hoveredNav === key ? { background: 'var(--hx-paper-lo)' } : null),
+        ...(hoveredNav === key ? { background: TOKENS.interactiveHover } : null),
       }}
     >
       {label}
@@ -540,11 +545,13 @@ export function CalendarPanel(): ReactElement {
                   key={label}
                   style={{
                     textAlign: 'center',
-                    fontSize: 11,
-                    letterSpacing: 1,
+                    fontSize: fontSize(-3),
+                    letterSpacing: 0.5,
                     color:
-                      weekday === 0 || weekday === 6 ? 'var(--hx-ink-faint)' : 'var(--hx-ink-soft)',
-                    fontFamily: 'var(--hx-font-sans)',
+                      weekday === 0 || weekday === 6
+                        ? TOKENS.labelTertiary
+                        : TOKENS.labelSecondary,
+                    fontFamily: TOKENS.fontText,
                   }}
                 >
                   {label}
@@ -604,7 +611,7 @@ export function CalendarPanel(): ReactElement {
               </span>
               <span style={bigDateMetaStyle}>
                 <span>{`${brief.date.year}年${brief.date.month}月`}</span>
-                <span style={{ color: 'var(--hx-ink-faint)' }}>{brief.weekdayName}</span>
+                <span style={{ color: TOKENS.labelTertiary }}>{brief.weekdayName}</span>
               </span>
             </div>
 
@@ -633,7 +640,14 @@ export function CalendarPanel(): ReactElement {
                 <span style={rowLabelStyle}>节日</span>
                 <span style={{ ...rowValueStyle, ...festivalRowStyle }}>
                   {brief.festivals.map((festival) => (
-                    <span key={festival.id} style={festivalChipStyle}>
+                    <span
+                      key={festival.id}
+                      style={
+                        festival.isStatutoryHoliday === true
+                          ? { ...festivalChipStyle, color: TOKENS.stateError }
+                          : festivalChipStyle
+                      }
+                    >
                       {formatFestivalLabel(festival)}
                     </span>
                   ))}

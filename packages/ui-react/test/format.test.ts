@@ -2,7 +2,7 @@
  * `src/pure/format.ts` 的展示文案测试。
  *
  * 这些断言是「日历看得懂」的底线：初一显示月名、节气日显示节气名、
- * 今日浮标两行文案稳定、历史叙事出处可读。
+ * 收起态小条两行文案稳定、历史叙事出处可读。
  */
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
@@ -91,7 +91,7 @@ test('节气一行：倒计时与当天交节', () => {
   )
 })
 
-test('今日浮标两行文案', () => {
+test('收起态小条两行文案', () => {
   assert.deepEqual(formatPill(buildDayBrief({ year: 2026, month: 11, day: 18 })), {
     primary: '十月初十',
     secondary: '丙午年 · 丙申日',

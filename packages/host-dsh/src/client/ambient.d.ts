@@ -9,7 +9,11 @@
  * Node-side half and augments nothing). A plugin must therefore name the host
  * packages whose seats it uses. These imports are erased at build time: at
  * runtime every one of them comes from the shell's frozen module table.
+ *
+ * 0.2.0 席位：`main`（layout）、`settings.section`（ui-settings 的契约 +
+ * ui-settings-general 在运行时声明）、`shell.overlay`（layout）。
+ * 左侧栏的导航行席位已不再使用，所以 `ui-sidebar` 的增强也删掉了。
  */
 import '@deepseek-ai/dsh-client-ui-renderer/client'
 import '@deepseek-ai/dsh-client-ui-layout/client'
-import '@deepseek-ai/dsh-client-ui-sidebar/client'
+import '@deepseek-ai/dsh-client-ui-settings/client'

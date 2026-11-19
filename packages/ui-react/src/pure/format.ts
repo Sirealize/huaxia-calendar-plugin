@@ -1,5 +1,5 @@
 /**
- * 中文展示格式化纯函数：农历格文案、干支行、节气倒计时、今日浮标、出处署名。
+ * 中文展示格式化纯函数：农历格文案、干支行、节气倒计时、收起态小条、出处署名。
  *
  * 只做「数据 → 文案」的映射，不依赖 React、不依赖任何宿主 API。
  */
@@ -84,7 +84,11 @@ export function formatSolarTermLine(brief: DayBrief, options: { isToday?: boolea
   return `距「${brief.nextSolarTerm.name}」${days} 天（${when}）`
 }
 
-/** 今日浮标的两行文案。 */
+/**
+ * 收起态小条的两行文案（0.2.0 起由左下角月历的收起态复用）。
+ *
+ * 中文语序：农历月日 + 「今日某节气」（有节气）或干支年/日（无节气）。
+ */
 export function formatPill(brief: DayBrief): PillText {
   return {
     primary: `${lunarMonthLabel(brief.lunar)}${brief.lunar.lunarDayName}`,
@@ -93,6 +97,35 @@ export function formatPill(brief: DayBrief): PillText {
         ? `今日${brief.solarTerm.name}`
         : `${brief.ganZhi.year}年 · ${brief.ganZhi.day}日`,
   }
+}
+
+/**
+ * 左下角月历点击某一天后的「一行该日信息」。
+ *
+ * 内容优先级（越具体越靠前，保证一行里总有信息）：
+ * 节气（当日交节）> 节日（含法定节假日角标）> 历史叙事标题 > 下一个节气倒计时。
+ * 都没有时退化为「农历 + 干支日」两段，绝不会出现空白行。
+ *
+ * @param brief - 该日的一屏数据。
+ * @param options.isToday - 是否为今天；`false` 时节气文案写「当日交节」而非「今日交节」。
+ * @returns 形如 `十月初十 · 丙申日 · 北美铁路启用标准时间` 的单行文案。
+ */
+export function formatMiniDayLine(brief: DayBrief, options: { isToday?: boolean } = {}): string {
+  const isToday = options.isToday ?? true
+  const head = `${lunarMonthLabel(brief.lunar)}${brief.lunar.lunarDayName}`
+  const ganZhi = `${brief.ganZhi.day}日`
+
+  let tail: string
+  if (brief.solarTerm !== undefined) {
+    tail = `${isToday ? '今日' : '当日'}交节 · ${brief.solarTerm.name}`
+  } else if (brief.festivals.length > 0) {
+    tail = brief.festivals.map(formatFestivalLabel).join('、')
+  } else if (brief.event !== undefined) {
+    tail = brief.event.title
+  } else {
+    tail = formatSolarTermLine(brief, { isToday })
+  }
+  return `${head} · ${ganZhi} · ${tail}`
 }
 
 /** 节日小标签文案（名称 + 法定节假日角标）。 */

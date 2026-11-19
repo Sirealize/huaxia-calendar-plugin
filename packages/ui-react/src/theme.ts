@@ -1,74 +1,83 @@
 /**
- * 视觉令牌：宣纸底 / 墨色字 / 朱砂点缀。
+ * 视觉令牌：**只引用宿主 DSH 的主题 token**（`--dsw-*` / `--dsh-*`）。
  *
- * DSH 的 CSS Modules 管线未发布，插件不能 import 外部 CSS 文件，所以整套视觉
- * 走「根节点挂 CSS 变量 + 子节点用 var() 内联样式」：主题只在 {@link PANEL_VARS}
- * 一处定义，组件里不出现裸色值。
+ * 0.2.0 的产品意见是「不要自己带色，跟随 DSH 外观」：旧版自造的那套底色、
+ * 点缀色、装饰字体栈全部删除，组件里不再出现任何品牌色值。宿主在 light / dark 之间切换时
+ * 这些 CSS 变量的值自动变化，所以组件**不需要订阅主题状态**，只消费变量即可。
+ *
+ * 每个 token 都写成 `var(--token, fallback)`：`verify.mjs` 在没有浏览器的 Node
+ * 环境里渲染组件，没有宿主挂的变量，兜底值保证静态结构仍然渲染得出来。
  */
 import type { CSSProperties } from 'react'
 
-/** 允许在 style 对象里写 CSS 自定义属性。 */
-export type CalendarStyle = CSSProperties & { readonly [key: `--hx-${string}`]: string | number }
-
-/** 墨与纸。 */
-export const TOKENS = Object.freeze({
-  /** 宣纸主色 */
-  paper: '#f7f1e3',
-  /** 受光处（标题带） */
-  paperHi: '#fdfaf2',
-  /** 背光处 / 悬停 */
-  paperLo: '#f1e8d4',
-  /** 墨 */
-  ink: '#241f19',
-  /** 淡墨（正文） */
-  inkSoft: '#5c5346',
-  /** 更淡的墨（辅助信息） */
-  inkFaint: '#9a8f7c',
-  /** 朱砂（今天 / 节气 / 印章） */
-  cinnabar: '#a63b2a',
-  /** 朱砂淡底 */
-  cinnabarSoft: '#f3e0d9',
-  /** 朱砂描边 */
-  cinnabarLine: '#d8a898',
-  /** 石绿（节气用色） */
-  jade: '#3f6b58',
-  /** 界栏线 */
-  line: '#ded2b8',
-  /** 更浅的界栏线 */
-  lineSoft: 'rgba(222, 210, 184, 0.55)',
-})
-
-/** 标题与数字用宋体，界面文案用无衬线。 */
-export const FONT_SERIF =
-  '"Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "STSong", "SimSun", serif'
-export const FONT_SANS =
-  '"PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Microsoft YaHei", system-ui, sans-serif'
-
-/** 挂在根节点上的 CSS 变量表。 */
-export const PANEL_VARS: CalendarStyle = {
-  '--hx-paper': TOKENS.paper,
-  '--hx-paper-hi': TOKENS.paperHi,
-  '--hx-paper-lo': TOKENS.paperLo,
-  '--hx-ink': TOKENS.ink,
-  '--hx-ink-soft': TOKENS.inkSoft,
-  '--hx-ink-faint': TOKENS.inkFaint,
-  '--hx-cinnabar': TOKENS.cinnabar,
-  '--hx-cinnabar-soft': TOKENS.cinnabarSoft,
-  '--hx-cinnabar-line': TOKENS.cinnabarLine,
-  '--hx-jade': TOKENS.jade,
-  '--hx-line': TOKENS.line,
-  '--hx-line-soft': TOKENS.lineSoft,
-  '--hx-font-serif': FONT_SERIF,
-  '--hx-font-sans': FONT_SANS,
-}
+/** 组件内联样式对象的类型别名（本包不引外部 CSS 文件）。 */
+export type CalendarStyle = CSSProperties
 
 /**
- * 宣纸底：受光晕 + 纸纤维。多层 background 叠在一起，纯线性/径向渐变，
- * 不引任何图片资源（对离线与打包体积友好）。
+ * 宿主主题 token 表。
+ *
+ * 全部来自 DSH 的 alias 层，随宿主主题切换自动变色；分组顺序与 DSH 主题包一致
+ * （背景 / 文字 / 边框 / 强调与状态 / 交互 / 阴影 / 字体）。
  */
-export const PAPER_BACKGROUND = [
-  `radial-gradient(1100px 520px at 10% -12%, ${TOKENS.paperHi} 0%, rgba(253, 250, 242, 0) 62%)`,
-  `radial-gradient(760px 420px at 96% 4%, rgba(255, 253, 246, 0.9) 0%, rgba(255, 253, 246, 0) 58%)`,
-  `repeating-linear-gradient(90deg, rgba(140, 120, 86, 0.035) 0px, rgba(140, 120, 86, 0.035) 1px, rgba(140, 120, 86, 0) 1px, rgba(140, 120, 86, 0) 3px)`,
-  `linear-gradient(180deg, ${TOKENS.paper} 0%, #f4ecda 100%)`,
-].join(', ')
+export const TOKENS = Object.freeze({
+  // 背景层
+  bgBase: 'var(--dsw-alias-bg-base, #ffffff)',
+  bgLayer1: 'var(--dsw-alias-bg-layer-1, #ffffff)',
+  bgLayer2: 'var(--dsw-alias-bg-layer-2, #ffffff)',
+  bgLayer3: 'var(--dsw-alias-bg-layer-3, #ffffff)',
+  bgModule: 'var(--dsw-alias-bg-module-platform, #f5f6f7)',
+
+  // 文字
+  labelPrimary: 'var(--dsw-alias-label-primary, #1b1b1c)',
+  labelSecondary: 'var(--dsw-alias-label-secondary, #353638)',
+  labelTertiary: 'var(--dsw-alias-label-tertiary, #61666b)',
+  labelCaption: 'var(--dsw-alias-label-caption, #adb2b8)',
+  labelDimmed: 'var(--dsw-alias-label-dimmed, #e1e5ee)',
+  labelPrimaryForeground: 'var(--dsw-alias-label-primary-foreground, #ffffff)',
+
+  // 边框
+  borderL1: 'var(--dsw-alias-border-l1, rgba(0, 0, 0, 0.04))',
+  borderL2: 'var(--dsw-alias-border-l2, rgba(0, 0, 0, 0.1))',
+  borderL3: 'var(--dsw-alias-border-l3, rgba(0, 0, 0, 0.12))',
+
+  // 强调 / 状态
+  brandPrimary: 'var(--dsw-alias-brand-primary, #1b1b1c)',
+  stateError: 'var(--dsw-alias-state-error-primary, #ec1313)',
+  stateWarn: 'var(--dsw-alias-state-warn-primary, #f59e0b)',
+  stateSuccess: 'var(--dsw-alias-state-success-primary, #22c55e)',
+
+  // 交互反馈
+  interactiveHover: 'var(--dsw-alias-interactive-bg-hover, rgba(38, 49, 72, 0.06))',
+  interactiveActive: 'var(--dsw-alias-interactive-bg-active, rgba(38, 49, 72, 0.1))',
+
+  // 阴影（DSH 把 elevation 定义在 body 及其后代上，浮层里可直接用）
+  elevationPanel:
+    'var(--dsw-elevation-panel, 0 0 0 0.5px rgba(0, 0, 0, 0.12), 0 3px 8px rgba(0, 0, 0, 0.04))',
+  elevationSoft: 'var(--dsw-elevation-soft, 0 4px 16px rgba(0, 0, 0, 0.04))',
+
+  // 字体
+  fontText: 'var(--dsh-font-family-text, var(--dsw-font-family, system-ui, sans-serif))',
+  contentFontSize: 'var(--dsh-content-font-size, 14px)',
+})
+
+/** 圆角也走宿主 token，避免和宿主界面的圆角风格打架。 */
+export const RADIUS = Object.freeze({
+  xs: 'var(--dsw-radius-xs, 4px)',
+  sm: 'var(--dsw-radius-sm, 8px)',
+  md: 'var(--dsw-radius-md, 12px)',
+  lg: 'var(--dsw-radius-lg, 16px)',
+})
+
+/**
+ * 字号：以宿主的正文档位 `--dsh-content-font-size` 为基准做像素增减，
+ * 这样用户在宿主设置里放大字号时日历会跟着放大，而不是写死一套尺寸。
+ *
+ * @param delta - 相对宿主正文档位的像素增减（如 `+8`、`-3`）。
+ * @returns 可直接放进 style 的 CSS 长度表达式。
+ */
+export function fontSize(delta = 0): string {
+  const base = TOKENS.contentFontSize
+  if (delta === 0) return base
+  const operator = delta > 0 ? '+' : '-'
+  return `calc(${base} ${operator} ${Math.abs(delta)}px)`
+}
